@@ -49,9 +49,31 @@
     .person{background:#172339;border:1px solid #334155;border-radius:12px;padding:14px}
     .person h4{margin:0 0 6px}
     .person .role{color:#e2e8f0;font-weight:600;margin:0 0 8px}
+    .form-wrap{margin-top:20px;background:#111827;border:1px solid #334155;border-radius:14px;padding:16px}
+    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-size:13px;color:#cbd5e1}
+    .field input,.field select,.field textarea{
+      width:100%;border:1px solid #334155;background:#0b1220;color:#e2e8f0;border-radius:10px;padding:11px 12px;font:inherit
+    }
+    .field textarea{min-height:120px;resize:vertical}
+    .full{grid-column:1 / -1}
+    .submit-btn{margin-top:10px;background:var(--gold);color:#111;border:none;border-radius:10px;padding:12px 16px;font-weight:700;cursor:pointer}
+    .submit-btn:hover{opacity:.9}
+    .help{margin:10px 0 0;color:#93c5fd;font-size:13px}
+    .success-pop{
+      position:fixed;inset:0;background:rgba(15,23,42,.72);display:none;align-items:center;justify-content:center;padding:16px;z-index:60
+    }
+    .success-pop.show{display:flex}
+    .success-box{
+      width:min(480px,100%);background:#fff;border-radius:14px;padding:22px;border:1px solid var(--line);text-align:center
+    }
+    .success-box h4{margin:0 0 8px;font-size:24px;color:#0f172a}
+    .success-box p{margin:0 0 14px;color:#334155}
+    .ok-btn{background:#0f172a;color:#fff;border:none;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
     footer{padding:22px 0 28px;border-top:1px solid var(--line);color:#64748b}
     @media (max-width:900px){.grid{grid-template-columns:1fr 1fr}}
-    @media (max-width:650px){nav{display:none}.grid{grid-template-columns:1fr}.contacts{grid-template-columns:1fr}}
+    @media (max-width:650px){nav{display:none}.grid{grid-template-columns:1fr}.contacts{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -132,6 +154,48 @@
             <p><strong>Phone:</strong> xxxxxx</p>
           </article>
         </div>
+        <div class="form-wrap">
+          <form id="project-form" name="project-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="project-inquiry">
+            <p style="display:none;">
+              <label>Do not fill this if you are human: <input name="bot-field"></label>
+            </p>
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" required>
+              </div>
+              <div class="field">
+                <label for="company">Company Name</label>
+                <input id="company" name="company" required>
+              </div>
+              <div class="field">
+                <label for="phone">Contact Number</label>
+                <input id="phone" name="phone" required>
+              </div>
+              <div class="field">
+                <label for="email">Email ID</label>
+                <input id="email" name="email" type="email" required>
+              </div>
+              <div class="field full">
+                <label for="service">What do you need?</label>
+                <select id="service" name="service" required>
+                  <option value="">Select requirement</option>
+                  <option>Business Website</option>
+                  <option>Web Application</option>
+                  <option>Website + Web Application</option>
+                  <option>Other Custom Software</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="comments">Comments / Project Details</label>
+                <textarea id="comments" name="comments" placeholder="Explain what you want to build..." required></textarea>
+              </div>
+            </div>
+            <button class="submit-btn" type="submit">Submit Requirement</button>
+            <p id="form-status" class="help"></p>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -141,5 +205,57 @@
       <strong><span class="r" style="color:#d4af37">R</span><span style="color:#000">nexa</span></strong> Software Solutions
     </div>
   </footer>
+  <div id="success-popup" class="success-pop" role="dialog" aria-modal="true" aria-labelledby="success-title">
+    <div class="success-box">
+      <h4 id="success-title">Thank You!</h4>
+      <p>Your requirement has been submitted successfully. We will contact you soon.</p>
+      <button id="popup-close" class="ok-btn" type="button">OK</button>
+    </div>
+  </div>
+  <script>
+    function encodeForm(data) {
+      return Object.keys(data)
+        .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
+    }
+
+    document.getElementById("project-form").addEventListener("submit", async function (event) {
+      event.preventDefault();
+      const form = event.target;
+      const status = document.getElementById("form-status");
+      const popup = document.getElementById("success-popup");
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      status.textContent = "Submitting your request...";
+      try {
+        await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encodeForm(data)
+        });
+
+        const message = [
+          "New website inquiry",
+          "Name: " + (data.name || ""),
+          "Company: " + (data.company || ""),
+          "Phone: " + (data.phone || ""),
+          "Email: " + (data.email || ""),
+          "Need: " + (data.service || ""),
+          "Comments: " + (data.comments || "")
+        ].join("\n");
+
+        popup.classList.add("show");
+        window.open("https://wa.me/917358145522?text=" + encodeURIComponent(message), "_blank");
+        status.textContent = "Submitted successfully. WhatsApp draft opened.";
+        form.reset();
+      } catch (_error) {
+        status.textContent = "Submission failed. Please try again.";
+      }
+    });
+
+    document.getElementById("popup-close").addEventListener("click", function () {
+      document.getElementById("success-popup").classList.remove("show");
+    });
+  </script>
 </body>
 </html>
