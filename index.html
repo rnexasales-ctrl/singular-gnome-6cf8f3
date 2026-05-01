@@ -42,6 +42,16 @@
     .chips{display:flex;flex-wrap:wrap;gap:10px}
     .chips span{border:1px solid #cbd5e1;background:#fff;padding:8px 14px;border-radius:999px;font-weight:600;color:var(--text)}
     .product{border:1px solid #cbd5e1;background:#fff;border-radius:16px;padding:22px}
+    .launch-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:start}
+    .launch-image{
+      width:100%;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 10px 24px rgba(2,6,23,.08)
+    }
+    .feat{margin:12px 0 0;padding-left:18px;color:var(--text)}
+    .feat li{margin-bottom:6px}
+    .price{
+      display:inline-block;margin-top:8px;padding:8px 12px;border-radius:10px;
+      background:#fff7d6;border:1px solid #fcd34d;color:#7c4a03;font-weight:800
+    }
     .tag{display:inline-block;background:#fef3c7;border:1px solid #fcd34d;color:#854d0e;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
     .contact{background:#0f172a;color:#fff;border-radius:18px;padding:26px}
     .contact p{color:#d5dbe5}
@@ -72,7 +82,7 @@
     .success-box p{margin:0 0 14px;color:#334155}
     .ok-btn{background:#0f172a;color:#fff;border:none;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
     footer{padding:22px 0 28px;border-top:1px solid var(--line);color:#64748b}
-    @media (max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:900px){.grid{grid-template-columns:1fr 1fr}.launch-grid{grid-template-columns:1fr}}
     @media (max-width:650px){nav{display:none}.grid{grid-template-columns:1fr}.contacts{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}}
   </style>
 </head>
@@ -126,13 +136,29 @@
 
   <section id="products">
     <div class="wrap">
-      <h3>Product List</h3>
-      <p class="sub">Your launched product is added below. Share exact product details and we can replace this instantly.</p>
+      <h3>Launched Product</h3>
+      <p class="sub">Our newly launched product for hotels is designed to convert guest feedback into stronger online reputation and better service improvement.</p>
       <article class="product">
-        <span class="tag">Launched Product</span>
-        <h4>RNexa LaunchPad</h4>
-        <p><strong>Smart business website and operations starter kit</strong></p>
-        <p>A complete starter platform designed for hotels, hospitals, companies, and startups to launch quickly with professional quality.</p>
+        <div class="launch-grid">
+          <div>
+            <span class="tag">Hotel Product</span>
+            <h4>Guest Feedback to 5 Star Google Reviews</h4>
+            <p><strong>Private feedback and review growth system for hotels</strong></p>
+            <p>
+              This product helps hotels collect guest feedback instantly, solve issues privately, and increase positive Google reviews with a simple dashboard.
+            </p>
+            <p class="price">Starting at INR 1000 per month</p>
+            <ul class="feat">
+              <li>No hidden charges, quick setup in minutes.</li>
+              <li>Works on mobile, tablet, and desktop.</li>
+              <li>No app required for guests or hotel staff.</li>
+              <li>Track feedback, reports, and actions in one place.</li>
+            </ul>
+          </div>
+          <div>
+            <img class="launch-image" src="./launched-product.png" alt="Rnexa launched hotel feedback product overview">
+          </div>
+        </div>
       </article>
     </div>
   </section>
