@@ -24,6 +24,9 @@
     .logo .r{color:var(--gold)}
     .logo .nexa{color:#000}
     .brandline{margin:0;color:#7c6225;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+    .menu-btn{
+      display:none;background:#0f172a;color:#fff;border:none;border-radius:10px;padding:10px 12px;font-weight:700;cursor:pointer
+    }
     nav a{text-decoration:none;color:var(--text);font-weight:600;margin-left:16px}
     nav a:hover{color:var(--gold)}
     .hero{background:linear-gradient(135deg,#0f172a,#1f2937);color:#fff;padding:74px 0 58px}
@@ -52,6 +55,11 @@
     }
     .shot-card img{width:100%;height:220px;object-fit:cover;object-position:top;border-radius:8px;display:block}
     .shot-title{margin:8px 2px 2px;font-size:13px;color:#475569;font-weight:700}
+    .career-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .career-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:16px;box-shadow:0 8px 20px rgba(2,6,23,.05)}
+    .career-meta{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+    .career-meta span{font-size:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:999px;padding:5px 10px;color:#475569;font-weight:600}
+    .career-card p{margin:0;color:#475569}
     .feat{margin:12px 0 0;padding-left:18px;color:var(--text)}
     .feat li{margin-bottom:6px}
     .price{
@@ -87,15 +95,30 @@
     .success-box h4{margin:0 0 8px;font-size:24px;color:#0f172a}
     .success-box p{margin:0 0 14px;color:#334155}
     .ok-btn{background:#0f172a;color:#fff;border:none;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+    .wa-float{
+      position:fixed;right:16px;bottom:16px;z-index:55;
+      display:inline-flex;align-items:center;gap:8px;
+      background:#25d366;color:#05351a;text-decoration:none;
+      border-radius:999px;padding:10px 14px;font-weight:800;
+      box-shadow:0 8px 20px rgba(0,0,0,.2)
+    }
+    .wa-float:hover{filter:brightness(.96)}
     footer{padding:22px 0 28px;border-top:1px solid var(--line);color:#64748b}
     @media (max-width:900px){
       .grid{grid-template-columns:1fr 1fr}
       .launch-grid{grid-template-columns:1fr}
       .shots-grid{grid-template-columns:1fr 1fr}
+      .career-grid{grid-template-columns:1fr}
       .shot-card img{height:200px}
     }
     @media (max-width:650px){
-      nav{display:none}
+      .menu-btn{display:inline-flex}
+      nav{
+        display:none;position:absolute;top:62px;left:16px;right:16px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;
+        box-shadow:0 12px 28px rgba(2,6,23,.12);padding:8px 4px
+      }
+      nav.open{display:block}
+      nav a{display:block;margin:0;padding:10px 12px}
       .top .wrap{padding:10px 0}
       .brandline{font-size:10px}
       .logo{font-size:24px}
@@ -108,12 +131,14 @@
       .product{padding:14px}
       .contact{padding:16px}
       .grid{grid-template-columns:1fr}
+      .career-grid{grid-template-columns:1fr}
       .contacts{grid-template-columns:1fr}
       .form-grid{grid-template-columns:1fr}
       .shots-grid{grid-template-columns:1fr}
       .shot-card img{height:180px}
       .field input,.field select,.field textarea{padding:10px}
       .submit-btn{width:100%}
+      .wa-float{right:12px;bottom:12px;padding:9px 12px;font-size:14px}
     }
   </style>
 </head>
@@ -126,10 +151,12 @@
           <p class="brandline">Software Solutions</p>
         </div>
       </div>
-      <nav>
+      <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav">
         <a href="#services">Services</a>
         <a href="#industries">Industries</a>
         <a href="#products">Products</a>
+        <a href="#careers">Careers</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -216,6 +243,19 @@
     </div>
   </section>
 
+  <section id="careers">
+    <div class="wrap">
+      <h3>Hiring & Interviews</h3>
+      <p class="sub">Vacancies published from RNexa Admin Hire panel are displayed here automatically.</p>
+      <div id="career-list" class="career-grid">
+        <article class="career-card">
+          <h4>Loading vacancies...</h4>
+          <p>Please wait while we fetch open roles.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section id="contact">
     <div class="wrap">
       <div class="contact">
@@ -291,6 +331,9 @@
       <button id="popup-close" class="ok-btn" type="button">OK</button>
     </div>
   </div>
+  <a class="wa-float" href="https://wa.me/917358145522?text=Hello%20Rnexa%2C%20I%20need%20a%20website%20or%20web%20application." target="_blank" rel="noopener">
+    WhatsApp
+  </a>
   <script>
     function encodeForm(data) {
       return Object.keys(data)
@@ -335,6 +378,76 @@
     document.getElementById("popup-close").addEventListener("click", function () {
       document.getElementById("success-popup").classList.remove("show");
     });
+
+    const menuBtn = document.getElementById("menu-toggle");
+    const nav = document.getElementById("site-nav");
+
+    menuBtn.addEventListener("click", function () {
+      const isOpen = nav.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        nav.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    async function loadCareers() {
+      const container = document.getElementById("career-list");
+      const apiUrl = "http://localhost:3000/api/careers";
+
+      try {
+        const response = await fetch(apiUrl);
+        const payload = await response.json();
+        const careers = Array.isArray(payload.careers) ? payload.careers : [];
+
+        if (!careers.length) {
+          container.innerHTML = `
+            <article class="career-card">
+              <h4>No vacancies currently</h4>
+              <p>We are not hiring at this moment. Please check again soon.</p>
+            </article>
+          `;
+          return;
+        }
+
+        container.innerHTML = careers
+          .map(function (career) {
+            const title = String(career.title || "");
+            const department = String(career.department || "");
+            const location = String(career.location || "");
+            const experience = String(career.experience || "");
+            const employment = String(career.employment || "");
+            const description = String(career.description || "");
+            const applyEmail = String(career.applyEmail || "rnexa.info@gmail.com");
+            return `
+              <article class="career-card">
+                <h4>${title}</h4>
+                <div class="career-meta">
+                  <span>${department}</span>
+                  <span>${location}</span>
+                  <span>${experience}</span>
+                  <span>${employment}</span>
+                </div>
+                <p>${description}</p>
+                <p style="margin-top:10px;"><a class="btn btn-main" href="mailto:${applyEmail}?subject=Application%20for%20${encodeURIComponent(title)}">Apply Now</a></p>
+              </article>
+            `;
+          })
+          .join("");
+      } catch (_error) {
+        container.innerHTML = `
+          <article class="career-card">
+            <h4>Vacancy feed unavailable</h4>
+            <p>Start RNexa Admin server to publish and show live vacancies on this page.</p>
+          </article>
+        `;
+      }
+    }
+
+    loadCareers();
   </script>
 </body>
 </html>
