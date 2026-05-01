@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rnexa Software Solution</title>
+  <meta name="description" content="Rnexa Software Solution builds websites and software web applications for companies, hotels, hospitals, startups, and businesses.">
+  <style>
+    :root{
+      --gold:#d4af37;
+      --black:#0f172a;
+      --text:#334155;
+      --bg:#f8fafc;
+      --white:#ffffff;
+      --line:#e2e8f0;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--black);line-height:1.6}
+    .wrap{width:min(1140px,calc(100% - 32px));margin:0 auto}
+    .top{position:sticky;top:0;background:#ffffffec;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
+    .top .wrap{display:flex;justify-content:space-between;align-items:center;padding:14px 0;gap:14px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:64px;height:64px;object-fit:contain;border-radius:10px;background:#fff}
+    .logo{margin:0;font-size:30px;font-weight:800}
+    .logo .r{color:var(--gold)}
+    .logo .nexa{color:#000}
+    .brandline{margin:0;color:#7c6225;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+    nav a{text-decoration:none;color:var(--text);font-weight:600;margin-left:16px}
+    nav a:hover{color:var(--gold)}
+    .hero{background:linear-gradient(135deg,#0f172a,#1f2937);color:#fff;padding:84px 0 70px}
+    .hero h2{font-size:clamp(30px,4.5vw,52px);line-height:1.1;margin:0 0 14px}
+    .hero p{margin:0 0 22px;color:#d5dbe5;max-width:760px}
+    .btn{display:inline-block;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:700}
+    .btn-main{background:var(--gold);color:#111}
+    .btn-main:hover{opacity:.9}
+    section{padding:62px 0}
+    h3{font-size:30px;margin:0 0 10px}
+    .sub{margin:0 0 22px;color:var(--text)}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
+    .card h4{margin:0 0 8px;font-size:20px}
+    .card p{margin:0;color:var(--text)}
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chips span{border:1px solid #cbd5e1;background:#fff;padding:8px 14px;border-radius:999px;font-weight:600;color:var(--text)}
+    .product{border:1px solid #cbd5e1;background:#fff;border-radius:16px;padding:22px}
+    .tag{display:inline-block;background:#fef3c7;border:1px solid #fcd34d;color:#854d0e;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .contact{background:#0f172a;color:#fff;border-radius:18px;padding:26px}
+    .contact p{color:#d5dbe5}
+    .contacts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+    .person{background:#172339;border:1px solid #334155;border-radius:12px;padding:14px}
+    .person h4{margin:0 0 6px}
+    .person .role{color:#e2e8f0;font-weight:600;margin:0 0 8px}
+    .person a{color:#f7e7ad;text-decoration:none}
+    .person a:hover{text-decoration:underline}
+    footer{padding:22px 0 28px;border-top:1px solid var(--line);color:#64748b}
+    @media (max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:650px){nav{display:none}.grid{grid-template-columns:1fr}.contacts{grid-template-columns:1fr}.brand img{width:52px;height:52px}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="brand">
+        <img src="./logo.png" alt="Rnexa Software Solutions logo">
+        <div>
+          <h1 class="logo"><span class="r">R</span><span class="nexa">nexa</span></h1>
+          <p class="brandline">Software Solutions</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#industries">Industries</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <h2>Professional websites and software applications for modern businesses.</h2>
+      <p>Rnexa Software Solution creates high-quality digital products for companies, hotels, hospitals, startup businesses, and growing brands.</p>
+      <a class="btn btn-main" href="#contact">Start Project</a>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <h3>Our Services</h3>
+      <p class="sub">From company websites to complete web applications, we build reliable and scalable solutions.</p>
+      <div class="grid">
+        <article class="card"><h4>Business Websites</h4><p>Premium websites with clean design, strong branding, and mobile-first layout.</p></article>
+        <article class="card"><h4>Web App Development</h4><p>Custom business software, dashboards, booking systems, and management tools.</p></article>
+        <article class="card"><h4>Maintenance & Support</h4><p>Ongoing updates, optimization, bug fixing, and long-term support for your growth.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="industries">
+    <div class="wrap">
+      <h3>Industries We Serve</h3>
+      <p class="sub">We design solutions tailored to business needs.</p>
+      <div class="chips">
+        <span>Company</span><span>Hotel</span><span>Hospital</span><span>Business</span><span>Startup Business</span><span>Professional Services</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="wrap">
+      <h3>Product List</h3>
+      <p class="sub">Your launched product is added below. Share exact product details and we can replace this instantly.</p>
+      <article class="product">
+        <span class="tag">Launched Product</span>
+        <h4>RNexa LaunchPad</h4>
+        <p><strong>Smart business website and operations starter kit</strong></p>
+        <p>A complete starter platform designed for hotels, hospitals, companies, and startups to launch quickly with professional quality.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <h3 style="margin-top:0;color:#fff">Let's build your website.</h3>
+        <p>Send your requirements and we will create the right solution for your business.</p>
+        <div class="contacts">
+          <article class="person">
+            <h4>Shahid</h4>
+            <p class="role">Founder</p>
+            <p><strong>Phone:</strong> <a href="tel:+917358145522">+91 73581 45522</a></p>
+            <p><strong>Email Name:</strong> Rnexa Software Solutions</p>
+            <p><strong>Email:</strong> <a href="mailto:rnexa.info@gmail.com">rnexa.info@gmail.com</a></p>
+          </article>
+          <article class="person">
+            <h4>Deepak Raj</h4>
+            <p class="role">Business Development Manager</p>
+            <p><strong>Phone:</strong> <a href="tel:+918248351935">+91 82483 51935</a></p>
+            <p><strong>Email Name:</strong> Rnexa Sales</p>
+            <p><strong>Email:</strong> <a href="mailto:rnexa.sales@gmail.com">rnexa.sales@gmail.com</a></p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <strong><span class="r" style="color:#d4af37">R</span><span style="color:#000">nexa</span></strong> Software Solutions
+    </div>
+  </footer>
+</body>
+</html>
