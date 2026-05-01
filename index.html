@@ -156,7 +156,6 @@
         <a href="#services">Services</a>
         <a href="#industries">Industries</a>
         <a href="#products">Products</a>
-        <a href="#careers">Careers</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -243,19 +242,7 @@
     </div>
   </section>
 
-  <section id="careers">
-    <div class="wrap">
-      <h3>Hiring & Interviews</h3>
-      <p class="sub">Vacancies published from RNexa displayed here automatically.</p>
-      <div id="career-list" class="career-grid">
-        <article class="career-card">
-          <h4>Loading vacancies...</h4>
-          <p>Please wait while we fetch open roles.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
+  
   <section id="contact">
     <div class="wrap">
       <div class="contact">
@@ -394,60 +381,6 @@
       });
     });
 
-    async function loadCareers() {
-      const container = document.getElementById("career-list");
-      const apiUrl = "https://rnexa.onrender.com/api/careers";
-
-      try {
-        const response = await fetch(apiUrl);
-        const payload = await response.json();
-        const careers = Array.isArray(payload.careers) ? payload.careers : [];
-
-        if (!careers.length) {
-          container.innerHTML = `
-            <article class="career-card">
-              <h4>No vacancies currently</h4>
-              <p>We are not hiring at this moment. Please check again soon.</p>
-            </article>
-          `;
-          return;
-        }
-
-        container.innerHTML = careers
-          .map(function (career) {
-            const title = String(career.title || "");
-            const department = String(career.department || "");
-            const location = String(career.location || "");
-            const experience = String(career.experience || "");
-            const employment = String(career.employment || "");
-            const description = String(career.description || "");
-            const applyEmail = String(career.applyEmail || "rnexa.info@gmail.com");
-            return `
-              <article class="career-card">
-                <h4>${title}</h4>
-                <div class="career-meta">
-                  <span>${department}</span>
-                  <span>${location}</span>
-                  <span>${experience}</span>
-                  <span>${employment}</span>
-                </div>
-                <p>${description}</p>
-                <p style="margin-top:10px;"><a class="btn btn-main" href="mailto:${applyEmail}?subject=Application%20for%20${encodeURIComponent(title)}">Apply Now</a></p>
-              </article>
-            `;
-          })
-          .join("");
-      } catch (_error) {
-        container.innerHTML = `
-          <article class="career-card">
-            <h4>Vacancy feed unavailable</h4>
-            <p>live vacancies on this page.</p>
-          </article>
-        `;
-      }
-    }
-
-    loadCareers();
-  </script>
+      </script>
 </body>
 </html>
