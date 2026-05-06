@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Feedback - RNexa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .feedback-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        
+        .exit-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .exit-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .form-content {
+            padding: 30px;
+        }
+        
+        .feedback-type {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .type-option {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+        
+        .type-option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .type-option.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .type-option .icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .type-option .label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .rating-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        
+        .rating-option {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+        
+        .rating-option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .rating-option.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+        
+        .loading.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-container">
+        <div class="header">
+            <button class="exit-btn" onclick="goHome()">×</button>
+            <h2>Guest Feedback</h2>
+            <p>We value your experience</p>
+        </div>
+        
+        <div class="form-content">
+            <div id="message"></div>
+            
+            <div class="loading" id="loading">
+                Loading hotels...
+            </div>
+            
+            <form id="feedback-form">
+                <div class="feedback-type">
+                    <div class="type-option" data-type="hotel" onclick="selectFeedbackType('hotel')">
+                        <div class="icon">🏨</div>
+                        <div class="label">Hotel</div>
+                    </div>
+                    <div class="type-option" data-type="restaurant" onclick="selectFeedbackType('restaurant')">
+                        <div class="icon">🍽️</div>
+                        <div class="label">Restaurant</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="guest-name">Your Name *</label>
+                    <input type="text" id="guest-name" name="guestName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hotel-select">Select Hotel *</label>
+                    <select id="hotel-select" name="hotelId" required onchange="updateRestaurantInfo()">
+                        <option value="">Choose a hotel...</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="restaurant-group" style="display: none;">
+                    <label for="restaurant-name">Restaurant</label>
+                    <input type="text" id="restaurant-name" name="restaurantName" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="room-number">Room Number (for hotel feedback)</label>
+                    <input type="text" id="room-number" name="roomNumber">
+                </div>
+                
+                <div class="form-group">
+                    <label>Rating *</label>
+                    <div class="rating-group">
+                        <div class="rating-option" data-rating="5" onclick="selectRating(5)">⭐ Excellent</div>
+                        <div class="rating-option" data-rating="4" onclick="selectRating(4)">⭐ Good</div>
+                        <div class="rating-option" data-rating="3" onclick="selectRating(3)">⭐ Average</div>
+                        <div class="rating-option" data-rating="2" onclick="selectRating(2)">⭐ Poor</div>
+                        <div class="rating-option" data-rating="1" onclick="selectRating(1)">⭐ Bad</div>
+                    </div>
+                    <input type="hidden" id="rating" name="rating" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comments">Your Feedback *</label>
+                    <textarea id="comments" name="comments" placeholder="Please share your experience..." required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submit-btn">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let hotels = [];
+        let selectedFeedbackType = '';
+        let selectedRating = '';
+        
+        // Load hotels on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHotels();
+        });
+        
+        // Load hotels from API
+        async function loadHotels() {
+            const loading = document.getElementById('loading');
+            const hotelSelect = document.getElementById('hotel-select');
+            
+            loading.classList.add('show');
+            
+            try {
+                const response = await fetch('/api/hotels');
+                hotels = await response.json();
+                
+                // Populate hotel select
+                hotelSelect.innerHTML = '<option value="">Choose a hotel...</option>' +
+                    hotels.map(hotel => `<option value="${hotel.id}">${hotel.name}</option>`).join('');
+                
+            } catch (error) {
+                console.error('Error loading hotels:', error);
+                showMessage('Failed to load hotels. Please refresh the page.', 'error');
+            } finally {
+                loading.classList.remove('show');
+            }
+        }
+        
+        // Select feedback type
+        function selectFeedbackType(type) {
+            selectedFeedbackType = type;
+            
+            // Update UI
+            document.querySelectorAll('.type-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.querySelector(`[data-type="${type}"]`).classList.add('selected');
+            
+            // Show/hide restaurant group
+            const restaurantGroup = document.getElementById('restaurant-group');
+            const roomNumber = document.getElementById('room-number');
+            
+            if (type === 'restaurant') {
+                roomNumber.parentElement.style.display = 'none';
+                roomNumber.required = false;
+            } else {
+                roomNumber.parentElement.style.display = 'block';
+                roomNumber.required = false;
+            }
+            
+            updateRestaurantInfo();
+        }
+        
+        // Update restaurant info when hotel is selected
+        function updateRestaurantInfo() {
+            const hotelId = document.getElementById('hotel-select').value;
+            const restaurantGroup = document.getElementById('restaurant-group');
+            const restaurantName = document.getElementById('restaurant-name');
+            
+            if (!hotelId || selectedFeedbackType !== 'restaurant') {
+                restaurantGroup.style.display = 'none';
+                restaurantName.value = '';
+                return;
+            }
+            
+            const hotel = hotels.find(h => h.id === hotelId);
+            if (hotel && hotel.hasRestaurant && hotel.restaurantName) {
+                restaurantGroup.style.display = 'block';
+                restaurantName.value = hotel.restaurantName;
+            } else {
+                restaurantGroup.style.display = 'none';
+                restaurantName.value = '';
+                showMessage('This hotel does not have a restaurant registered.', 'error');
+            }
+        }
+        
+        // Select rating
+        function selectRating(rating) {
+            selectedRating = rating;
+            
+            // Update UI
+            document.querySelectorAll('.rating-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.querySelector(`[data-rating="${rating}"]`).classList.add('selected');
+            
+            // Update hidden input
+            document.getElementById('rating').value = rating;
+        }
+        
+        // Form submission
+        document.getElementById('feedback-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!selectedFeedbackType) {
+                showMessage('Please select feedback type (Hotel or Restaurant).', 'error');
+                return;
+            }
+            
+            if (!selectedRating) {
+                showMessage('Please select a rating.', 'error');
+                return;
+            }
+            
+            const formData = new FormData(this);
+            const feedbackData = Object.fromEntries(formData.entries());
+            
+            // Add additional data
+            feedbackData.feedbackType = selectedFeedbackType;
+            feedbackData.rating = selectedRating;
+            
+            // Clear room number if not hotel feedback
+            if (selectedFeedbackType === 'restaurant') {
+                feedbackData.roomNumber = '';
+            }
+            
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            
+            try {
+                const response = await fetch('/api/feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(feedbackData)
+                });
+                
+                if (response.ok) {
+                    showMessage('Thank you! Your feedback has been submitted successfully.', 'success');
+                    this.reset();
+                    
+                    // Reset selections
+                    selectedFeedbackType = '';
+                    selectedRating = '';
+                    document.querySelectorAll('.type-option').forEach(option => {
+                        option.classList.remove('selected');
+                    });
+                    document.querySelectorAll('.rating-option').forEach(option => {
+                        option.classList.remove('selected');
+                    });
+                    document.getElementById('restaurant-group').style.display = 'none';
+                    
+                    // Redirect after 3 seconds
+                    setTimeout(() => {
+                        goHome();
+                    }, 3000);
+                } else {
+                    showMessage('Failed to submit feedback. Please try again.', 'error');
+                }
+            } catch (error) {
+                showMessage('Error: ' + error.message, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Feedback';
+            }
+        });
+        
+        // Show message
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = `<div class="message ${type}">${text}</div>`;
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+            }, 5000);
+        }
+        
+        // Go home
+        function goHome() {
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html>
