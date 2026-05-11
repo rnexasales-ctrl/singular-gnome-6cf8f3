@@ -305,6 +305,8 @@
       .modal-shots{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
     @media (max-width:650px){
+      body{font-size:14px}
+      .wrap{width:min(100%,calc(100% - 20px))}
       .menu-btn{display:inline-flex}
       nav{
         display:none;position:absolute;top:62px;left:16px;right:16px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;
@@ -315,15 +317,82 @@
       .top .wrap{padding:10px 0}
       .brandline{font-size:10px}
       .logo{font-size:24px}
-      .hero{padding:44px 0 40px}
-      .hero-copy h2{font-size:32px}
-      .hero-panel,.snapshot-shell,.quote-sidebar,.quote-card,.product-tile,.contact,.product-modal-card{padding:18px}
-      section{padding:36px 0}
-      .sub{font-size:15px}
-      .grid,.hero-grid,.board-grid,.promise-bar,.quote-cards,.products-grid,.form-grid,.modal-shots{grid-template-columns:1fr}
+      .hero{padding:32px 0 28px}
+      .hero .wrap{gap:14px}
+      .hero-kicker{margin-bottom:12px;padding:6px 10px;font-size:10px}
+      .hero-copy h2{font-size:28px}
+      .hero-copy p,.hero-panel p,.snapshot-copy p,.quote-card p,.product-tile p,.contact p{font-size:14px;line-height:1.45}
+      .hero-actions{gap:8px;margin-top:18px}
+      .btn{padding:10px 14px;border-radius:10px;font-size:14px}
+      .hero-panel,.snapshot-shell,.quote-sidebar,.quote-card,.product-tile,.contact,.product-modal-card{padding:14px;border-radius:18px}
+      .card,.promise-item,.snapshot-point,.board-card,.person,.form-wrap,.success-box,.modal-shot,.offer-box,.note-card{padding:12px}
+      section{padding:26px 0}
+      h3{font-size:24px}
+      .sub{font-size:14px;margin-bottom:16px}
+      .snapshot-shell,.quote-layout,.products-grid,.product-modal-grid{gap:12px}
+      .snapshot-copy h4{font-size:30px;margin:10px 0}
+      .snapshot-points{margin-top:12px;gap:10px}
+      .snapshot-point strong,.board-card strong{font-size:15px}
+      .snapshot-point span,.board-card p,.promise-item span{font-size:13px}
+      .snapshot-actions{gap:8px;margin-top:16px}
+      .inline-contact{padding:8px 10px;font-size:13px}
+      .board-card{border-radius:14px}
+      .board-num{width:28px;height:28px;margin-bottom:8px}
+      .promise-item strong{font-size:14px}
+      .quote-sidebar h4{font-size:24px;margin:12px 0 10px}
+      .quote-side-list{gap:8px}
+      .quote-cards{order:1}
+      .quote-sidebar{order:2}
+      .quote-cards{
+        display:grid;
+        grid-auto-flow:column;
+        grid-auto-columns:minmax(88%,1fr);
+        grid-template-columns:none;
+        overflow-x:auto;
+        gap:12px;
+        padding-bottom:4px;
+        scroll-snap-type:x mandatory;
+        overscroll-behavior-x:contain
+      }
+      .quote-card{
+        scroll-snap-align:start;
+        min-height:auto
+      }
+      .quote-card h4{font-size:20px;margin:10px 0 8px}
+      .quote-price,.price{padding:7px 10px;font-size:14px}
+      .quote-list{
+        margin-top:12px;
+        gap:8px 10px;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        font-size:13px
+      }
+      .quote-list li{padding-left:14px;line-height:1.35}
+      .quote-actions{margin-top:14px}
+      .product-tile h4{font-size:20px}
+      .product-meta{gap:8px}
+      .product-meta span{padding:6px 10px;font-size:12px}
+      .contacts{gap:10px}
+      .person .role,.field label,.help{font-size:12px}
+      .grid,.hero-grid,.board-grid,.promise-bar,.products-grid,.form-grid{grid-template-columns:1fr}
+      .modal-shots{
+        display:grid;
+        grid-auto-flow:column;
+        grid-auto-columns:minmax(76%,1fr);
+        grid-template-columns:none;
+        overflow-x:auto;
+        gap:10px;
+        padding-bottom:4px;
+        scroll-snap-type:x mandatory;
+        overscroll-behavior-x:contain
+      }
+      .modal-shot{scroll-snap-align:start}
+      .modal-shot img{height:130px}
+      .shot-title{font-size:12px}
       .field input,.field select,.field textarea{padding:10px}
       .submit-btn{width:100%}
       .product-modal-head{flex-direction:column}
+      .product-modal-head h3{font-size:24px}
+      .product-modal-head p{font-size:14px}
       .wa-float{right:12px;bottom:12px;padding:9px 12px;font-size:14px}
     }
   </style>
