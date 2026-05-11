@@ -4,76 +4,235 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rnexa Software Solution</title>
-  <meta name="description" content="Rnexa Software Solution builds websites and software web applications for companies, hotels, hospitals, startups, and businesses.">
+  <meta name="description" content="Rnexa Software Solution builds websites, web applications, SaaS products, and launched digital solutions for companies, hotels, hospitals, startups, and businesses.">
   <style>
     :root{
       --gold:#d4af37;
+      --gold-dark:#7c4a03;
       --black:#0f172a;
+      --navy:#172339;
       --text:#334155;
+      --muted:#64748b;
       --bg:#f8fafc;
       --white:#ffffff;
       --line:#e2e8f0;
+      --soft:#fff7d6;
+      --shadow:0 18px 40px rgba(15,23,42,.08);
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--black);line-height:1.6}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Segoe UI,Arial,sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(212,175,55,.12), transparent 20%),
+        linear-gradient(180deg, #fbfcff 0%, var(--bg) 100%);
+      color:var(--black);
+      line-height:1.6
+    }
     .wrap{width:min(1140px,calc(100% - 32px));margin:0 auto}
-    .top{position:sticky;top:0;background:#ffffffec;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
+    .top{
+      position:sticky;top:0;background:#ffffffeb;backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line);z-index:20
+    }
     .top .wrap{display:flex;justify-content:space-between;align-items:center;padding:14px 0;gap:14px}
     .brand{display:flex;align-items:center;gap:12px}
     .logo{margin:0;font-size:30px;font-weight:800}
     .logo .r{color:var(--gold)}
     .logo .nexa{color:#000}
-    .brandline{margin:0;color:#7c6225;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+    .brandline{
+      margin:0;color:#7c6225;font-weight:700;letter-spacing:.12em;
+      text-transform:uppercase;font-size:12px
+    }
     .menu-btn{
-      display:none;background:#0f172a;color:#fff;border:none;border-radius:10px;padding:10px 12px;font-weight:700;cursor:pointer
+      display:none;background:#0f172a;color:#fff;border:none;border-radius:10px;
+      padding:10px 12px;font-weight:700;cursor:pointer
     }
     nav a{text-decoration:none;color:var(--text);font-weight:600;margin-left:16px}
     nav a:hover{color:var(--gold)}
-    .hero{background:linear-gradient(135deg,#0f172a,#1f2937);color:#fff;padding:74px 0 58px}
-    .hero h2{font-size:clamp(30px,4.5vw,52px);line-height:1.1;margin:0 0 14px}
-    .hero p{margin:0 0 22px;color:#d5dbe5;max-width:760px}
-    .btn{display:inline-block;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:700}
+    .hero{
+      background:
+        radial-gradient(circle at 85% 18%, rgba(212,175,55,.22), transparent 16%),
+        linear-gradient(135deg,#0f172a,#172339 48%,#1f2937);
+      color:#fff;padding:78px 0 64px;overflow:hidden
+    }
+    .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center}
+    .hero-copy h2{font-size:clamp(34px,5vw,56px);line-height:1.05;margin:0 0 14px}
+    .hero-copy p{margin:0 0 18px;color:#d5dbe5;max-width:680px}
+    .hero-kicker{
+      display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;padding:7px 12px;
+      border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(255,255,255,.06);
+      font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase
+    }
+    .hero-kicker span{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:12px;
+      text-decoration:none;font-weight:700;border:none;cursor:pointer;font:inherit
+    }
     .btn-main{background:var(--gold);color:#111}
-    .btn-main:hover{opacity:.9}
-    section{padding:52px 0}
-    h3{font-size:clamp(26px,3vw,30px);margin:0 0 10px}
+    .btn-main:hover{opacity:.94}
+    .btn-secondary{
+      background:transparent;color:#fff;border:1px solid rgba(255,255,255,.24)
+    }
+    .btn-secondary:hover{background:rgba(255,255,255,.08)}
+    .hero-panel{
+      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:24px;
+      padding:24px;box-shadow:0 16px 38px rgba(2,6,23,.16)
+    }
+    .hero-panel h3{margin:0 0 8px;font-size:18px;color:#fff}
+    .hero-panel p{margin:0 0 16px;color:#d5dbe5}
+    .hero-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .hero-card{
+      background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;padding:16px
+    }
+    .hero-card strong{display:block;font-size:16px;margin-bottom:6px;color:#fff}
+    .hero-card span{display:block;font-size:14px;color:#d5dbe5}
+    section{padding:56px 0}
+    h3{font-size:clamp(28px,3vw,34px);margin:0 0 10px}
+    h4{margin:0}
     .sub{margin:0 0 22px;color:var(--text)}
     .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
+    .card{
+      background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow)
+    }
     .card h4{margin:0 0 8px;font-size:20px}
     .card p{margin:0;color:var(--text)}
     .chips{display:flex;flex-wrap:wrap;gap:10px}
-    .chips span{border:1px solid #cbd5e1;background:#fff;padding:8px 14px;border-radius:999px;font-weight:600;color:var(--text)}
-    .product{border:1px solid #cbd5e1;background:#fff;border-radius:16px;padding:22px}
-    .launch-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:start}
-    .launch-image{
-      width:100%;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 10px 24px rgba(2,6,23,.08)
+    .chips span{
+      border:1px solid #cbd5e1;background:#fff;padding:8px 14px;border-radius:999px;
+      font-weight:600;color:var(--text)
     }
-    .shots-grid{margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-    .shot-card{
-      background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:8px;box-shadow:0 8px 20px rgba(2,6,23,.06)
+    .tag{
+      display:inline-block;background:#fef3c7;border:1px solid #fcd34d;color:#854d0e;
+      padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.08em;
+      text-transform:uppercase
     }
-    .shot-card img{width:100%;height:220px;object-fit:cover;object-position:top;border-radius:8px;display:block}
-    .shot-title{margin:8px 2px 2px;font-size:13px;color:#475569;font-weight:700}
-    .career-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-    .career-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:16px;box-shadow:0 8px 20px rgba(2,6,23,.05)}
-    .career-meta{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
-    .career-meta span{font-size:12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:999px;padding:5px 10px;color:#475569;font-weight:600}
-    .career-card p{margin:0;color:#475569}
-    .feat{margin:12px 0 0;padding-left:18px;color:var(--text)}
-    .feat li{margin-bottom:6px}
+    .tag-dark{
+      background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);color:#fff
+    }
+    .snapshot-shell{
+      position:relative;overflow:hidden;
+      display:grid;grid-template-columns:1.02fr .98fr;gap:18px;align-items:stretch;
+      padding:28px;border-radius:26px;background:#fff;border:1px solid #dbe4f0;box-shadow:var(--shadow)
+    }
+    .snapshot-shell::after{
+      content:"";position:absolute;right:-130px;top:-110px;width:360px;height:360px;
+      border-radius:50%;border:24px solid rgba(212,175,55,.95);opacity:.12
+    }
+    .snapshot-copy{position:relative;z-index:1}
+    .snapshot-copy h4{font-size:clamp(28px,4vw,48px);line-height:1.05;margin:14px 0 14px}
+    .snapshot-copy p{margin:0 0 18px;color:var(--text);max-width:620px}
+    .snapshot-points{
+      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px
+    }
+    .snapshot-point{
+      padding:14px 16px;border-radius:16px;background:#f8fafc;border:1px solid #dbe4f0
+    }
+    .snapshot-point strong{display:block;font-size:16px}
+    .snapshot-point span{display:block;color:var(--muted);font-size:14px}
+    .snapshot-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:22px}
+    .inline-contact{
+      padding:10px 14px;border-radius:12px;background:#0f172a;color:#fff;font-weight:700
+    }
+    .snapshot-board{
+      position:relative;z-index:1;display:flex;flex-direction:column;gap:14px;
+      border-radius:24px;background:linear-gradient(180deg,#0f172a,#172339);padding:22px;color:#fff
+    }
+    .board-head{display:flex;justify-content:space-between;gap:12px;align-items:start}
+    .board-head p{margin:6px 0 0;color:#d5dbe5}
+    .board-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .board-card{
+      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;padding:16px
+    }
+    .board-card strong{display:block;font-size:16px;margin-bottom:6px}
+    .board-card p{margin:0;color:#d5dbe5;font-size:14px}
+    .board-num{
+      display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;
+      border-radius:10px;background:rgba(212,175,55,.16);color:#fef3c7;font-size:12px;font-weight:800;
+      margin-bottom:10px
+    }
+    .promise-bar{
+      display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px
+    }
+    .promise-item{
+      background:#fff;border:1px solid #dbe4f0;border-radius:18px;padding:18px;text-align:center;
+      box-shadow:var(--shadow)
+    }
+    .promise-item strong{display:block;margin-bottom:4px}
+    .promise-item span{display:block;color:var(--muted);font-size:14px}
+    .quote-layout{display:grid;grid-template-columns:.88fr 1.12fr;gap:18px;align-items:start}
+    .quote-sidebar{
+      background:linear-gradient(180deg,#0f172a,#172339);color:#fff;border-radius:24px;
+      padding:24px;box-shadow:var(--shadow)
+    }
+    .quote-sidebar h4{font-size:28px;line-height:1.1;margin:14px 0 12px}
+    .quote-sidebar p{margin:0 0 16px;color:#d5dbe5}
+    .quote-side-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+    .quote-side-list li{
+      position:relative;padding-left:18px;color:#f8fafc
+    }
+    .quote-side-list li::before{
+      content:"";position:absolute;left:0;top:.68em;width:7px;height:7px;border-radius:50%;background:var(--gold)
+    }
+    .note-card{
+      margin-top:18px;padding:16px;border-radius:18px;background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.1)
+    }
+    .note-card strong{display:block;font-size:16px;margin-bottom:6px}
+    .note-card p{margin:0;color:#d5dbe5}
+    .quote-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .quote-card{
+      background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)
+    }
+    .quote-card h4{font-size:22px;line-height:1.15;margin:12px 0 10px}
+    .quote-card p{margin:0;color:var(--text)}
+    .quote-price{
+      display:inline-block;margin:12px 0 0;padding:10px 14px;border-radius:12px;
+      background:var(--soft);border:1px solid #fcd34d;color:var(--gold-dark);font-weight:800
+    }
+    .quote-list{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}
+    .quote-list li{position:relative;padding-left:18px;color:var(--text)}
+    .quote-list li::before{
+      content:"";position:absolute;left:0;top:.68em;width:7px;height:7px;border-radius:50%;background:var(--gold)
+    }
+    .quote-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .btn-dark{
+      background:#0f172a;color:#fff;border:1px solid #0f172a
+    }
+    .btn-dark:hover{background:#172339}
+    .products-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .product-tile{
+      display:flex;flex-direction:column;gap:12px;background:#fff;border:1px solid var(--line);
+      border-radius:24px;padding:24px;box-shadow:var(--shadow)
+    }
+    .product-clickable{cursor:pointer}
+    .product-tile p{margin:0;color:var(--text)}
+    .product-meta{display:flex;flex-wrap:wrap;gap:10px}
+    .product-meta span{
+      display:inline-flex;align-items:center;padding:7px 12px;border-radius:999px;
+      background:#f8fafc;border:1px solid #dbe4f0;color:#475569;font-size:13px;font-weight:700
+    }
     .price{
-      display:inline-block;margin-top:8px;padding:8px 12px;border-radius:10px;
+      display:inline-block;margin-top:4px;padding:8px 12px;border-radius:10px;
       background:#fff7d6;border:1px solid #fcd34d;color:#7c4a03;font-weight:800
     }
-    .tag{display:inline-block;background:#fef3c7;border:1px solid #fcd34d;color:#854d0e;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-    .contact{background:#0f172a;color:#fff;border-radius:18px;padding:26px}
+    .product-tile-muted{
+      background:linear-gradient(135deg,#0f172a,#172339);color:#fff
+    }
+    .product-tile-muted p{color:#d5dbe5}
+    .product-tile-muted .product-meta span{
+      background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#fff
+    }
+    .contact{background:#0f172a;color:#fff;border-radius:24px;padding:26px;box-shadow:var(--shadow)}
     .contact p{color:#d5dbe5}
     .contacts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
-    .person{background:#172339;border:1px solid #334155;border-radius:12px;padding:14px}
+    .person{background:#172339;border:1px solid #334155;border-radius:16px;padding:14px}
     .person h4{margin:0 0 6px}
     .person .role{color:#e2e8f0;font-weight:600;margin:0 0 8px}
-    .form-wrap{margin-top:20px;background:#111827;border:1px solid #334155;border-radius:14px;padding:16px}
+    .form-wrap{margin-top:20px;background:#111827;border:1px solid #334155;border-radius:18px;padding:16px}
     .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
     .field{display:flex;flex-direction:column;gap:6px}
     .field label{font-size:13px;color:#cbd5e1}
@@ -82,34 +241,62 @@
     }
     .field textarea{min-height:120px;resize:vertical}
     .full{grid-column:1 / -1}
-    .submit-btn{margin-top:10px;background:var(--gold);color:#111;border:none;border-radius:10px;padding:12px 16px;font-weight:700;cursor:pointer}
-    .submit-btn:hover{opacity:.9}
-    .help{margin:10px 0 0;color:#93c5fd;font-size:13px}
-    .success-pop{
-      position:fixed;inset:0;background:rgba(15,23,42,.72);display:none;align-items:center;justify-content:center;padding:16px;z-index:60
+    .submit-btn{
+      margin-top:10px;background:var(--gold);color:#111;border:none;border-radius:10px;padding:12px 16px;font-weight:700;cursor:pointer
     }
-    .success-pop.show{display:flex}
+    .submit-btn:hover{opacity:.94}
+    .help{margin:10px 0 0;color:#93c5fd;font-size:13px}
+    footer{padding:22px 0 28px;border-top:1px solid var(--line);color:#64748b}
+    .success-pop,.product-modal{
+      position:fixed;inset:0;background:rgba(15,23,42,.78);display:none;align-items:center;justify-content:center;
+      padding:16px;z-index:60
+    }
+    .success-pop.show,.product-modal.show{display:flex}
     .success-box{
-      width:min(480px,100%);background:#fff;border-radius:14px;padding:22px;border:1px solid var(--line);text-align:center
+      width:min(480px,100%);background:#fff;border-radius:18px;padding:22px;border:1px solid var(--line);text-align:center
     }
     .success-box h4{margin:0 0 8px;font-size:24px;color:#0f172a}
     .success-box p{margin:0 0 14px;color:#334155}
-    .ok-btn{background:#0f172a;color:#fff;border:none;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+    .ok-btn,.close-modal{
+      background:#0f172a;color:#fff;border:none;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer
+    }
+    .product-modal-card{
+      width:min(1120px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#fff;
+      border-radius:24px;border:1px solid var(--line);padding:24px;box-shadow:0 22px 50px rgba(2,6,23,.26)
+    }
+    .product-modal-head{
+      display:flex;justify-content:space-between;gap:14px;align-items:start;margin-bottom:18px
+    }
+    .product-modal-head p{margin:8px 0 0;color:var(--text)}
+    .product-modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+    .launch-image{
+      width:100%;border-radius:16px;border:1px solid #e2e8f0;box-shadow:0 10px 24px rgba(2,6,23,.08)
+    }
+    .feat{margin:14px 0 0;padding-left:18px;color:var(--text)}
+    .feat li{margin-bottom:6px}
+    .modal-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+    .modal-shots{margin-top:18px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+    .modal-shot{
+      background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:8px;box-shadow:0 8px 20px rgba(2,6,23,.06)
+    }
+    .modal-shot img{width:100%;height:170px;object-fit:cover;object-position:top;border-radius:10px;display:block}
+    .shot-title{margin:8px 2px 2px;font-size:13px;color:#475569;font-weight:700}
     .wa-float{
-      position:fixed;right:16px;bottom:16px;z-index:55;
-      display:inline-flex;align-items:center;gap:8px;
-      background:#25d366;color:#05351a;text-decoration:none;
-      border-radius:999px;padding:10px 14px;font-weight:800;
+      position:fixed;right:16px;bottom:16px;z-index:55;display:inline-flex;align-items:center;gap:8px;
+      background:#25d366;color:#05351a;text-decoration:none;border-radius:999px;padding:10px 14px;font-weight:800;
       box-shadow:0 8px 20px rgba(0,0,0,.2)
     }
     .wa-float:hover{filter:brightness(.96)}
-    footer{padding:22px 0 28px;border-top:1px solid var(--line);color:#64748b}
+    @media (max-width:1024px){
+      .hero .wrap,.snapshot-shell,.quote-layout,.product-modal-grid{grid-template-columns:1fr}
+      .quote-cards,.products-grid{grid-template-columns:1fr 1fr}
+      .modal-shots{grid-template-columns:repeat(3,minmax(0,1fr))}
+    }
     @media (max-width:900px){
-      .grid{grid-template-columns:1fr 1fr}
-      .launch-grid{grid-template-columns:1fr}
-      .shots-grid{grid-template-columns:1fr 1fr}
-      .career-grid{grid-template-columns:1fr}
-      .shot-card img{height:200px}
+      .grid,.promise-bar,.board-grid,.quote-cards,.products-grid{grid-template-columns:1fr 1fr}
+      .contacts{grid-template-columns:1fr}
+      .snapshot-points{grid-template-columns:1fr}
+      .modal-shots{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
     @media (max-width:650px){
       .menu-btn{display:inline-flex}
@@ -122,22 +309,15 @@
       .top .wrap{padding:10px 0}
       .brandline{font-size:10px}
       .logo{font-size:24px}
-      .hero{padding:42px 0 36px}
-      .hero h2{font-size:30px}
-      .hero p{font-size:15px}
-      section{padding:34px 0}
+      .hero{padding:44px 0 40px}
+      .hero-copy h2{font-size:32px}
+      .hero-panel,.snapshot-shell,.quote-sidebar,.quote-card,.product-tile,.contact,.product-modal-card{padding:18px}
+      section{padding:36px 0}
       .sub{font-size:15px}
-      .card{padding:14px}
-      .product{padding:14px}
-      .contact{padding:16px}
-      .grid{grid-template-columns:1fr}
-      .career-grid{grid-template-columns:1fr}
-      .contacts{grid-template-columns:1fr}
-      .form-grid{grid-template-columns:1fr}
-      .shots-grid{grid-template-columns:1fr}
-      .shot-card img{height:180px}
+      .grid,.hero-grid,.board-grid,.promise-bar,.quote-cards,.products-grid,.form-grid,.modal-shots{grid-template-columns:1fr}
       .field input,.field select,.field textarea{padding:10px}
       .submit-btn{width:100%}
+      .product-modal-head{flex-direction:column}
       .wa-float{right:12px;bottom:12px;padding:9px 12px;font-size:14px}
     }
   </style>
@@ -154,8 +334,8 @@
       <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav id="site-nav">
         <a href="#services">Services</a>
-        <a href="#industries">Industries</a>
-        <a href="#products">Products</a>
+        <a href="#quotation">Quotation</a>
+        <a href="#launched-products">Launched Products</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -163,20 +343,141 @@
 
   <section class="hero">
     <div class="wrap">
-      <h2>Professional websites and software applications for modern businesses.</h2>
-      <p>Rnexa Software Solution creates high-quality digital products for companies, hotels, hospitals, startup businesses, and growing brands.</p>
-      <a class="btn btn-main" href="#contact">Start Project</a>
+      <div class="hero-copy">
+        <div class="hero-kicker"><span></span>Build Maintain Scale</div>
+        <h2>Digital solutions for modern businesses, hotels, and growing brands.</h2>
+        <p>Rnexa Software Solution creates websites, custom web applications, SaaS products, and launched business tools that help teams grow faster and work smarter.</p>
+        <div class="hero-actions">
+          <a class="btn btn-main" href="#contact">Start Project</a>
+          <a class="btn btn-secondary" href="#launched-products">View Launched Products</a>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <h3>What we deliver</h3>
+        <p>Clean design, business-first development, reliable support, and practical launched products.</p>
+        <div class="hero-grid">
+          <div class="hero-card">
+            <strong>Business Websites</strong>
+            <span>Brand-focused websites with strong mobile layouts.</span>
+          </div>
+          <div class="hero-card">
+            <strong>Web Applications</strong>
+            <span>Dashboards, internal systems, portals, and tools.</span>
+          </div>
+          <div class="hero-card">
+            <strong>SaaS Products</strong>
+            <span>Scalable product builds with auth, roles, and analytics.</span>
+          </div>
+          <div class="hero-card">
+            <strong>Support</strong>
+            <span>Launch help, maintenance, and long-term improvements.</span>
+          </div>
+        </div>
+      </aside>
     </div>
   </section>
 
   <section id="services">
     <div class="wrap">
       <h3>Our Services</h3>
-      <p class="sub">From company websites to complete web applications, we build reliable and scalable solutions.</p>
+      <p class="sub">From company websites to launched digital products, we build reliable solutions that are easy to use and easy to grow.</p>
       <div class="grid">
-        <article class="card"><h4>Business Websites</h4><p>Premium websites with clean design, strong branding, and mobile-first layout.</p></article>
-        <article class="card"><h4>Web App Development</h4><p>Custom business software, dashboards, booking systems, and management tools.</p></article>
-        <article class="card"><h4>Maintenance & Support</h4><p>Ongoing updates, optimization, bug fixing, and long-term support for your growth.</p></article>
+        <article class="card">
+          <h4>Business Websites</h4>
+          <p>Premium websites with clean design, clear messaging, strong branding, and mobile-first layout.</p>
+        </article>
+        <article class="card">
+          <h4>Custom Web Applications</h4>
+          <p>Dashboards, booking tools, admin systems, and workflow platforms built around your business process.</p>
+        </article>
+        <article class="card">
+          <h4>SaaS Products & Support</h4>
+          <p>Product development, launch support, ongoing updates, bug fixes, and practical long-term maintenance.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="solutions">
+    <div class="wrap">
+      <h3>Solutions Snapshot</h3>
+      <p class="sub">A website-style version of your ad message, built directly into the homepage instead of using the poster image.</p>
+      <div class="snapshot-shell">
+        <div class="snapshot-copy">
+          <span class="tag">Digital Solutions</span>
+          <h4>Powerful websites, web applications, SaaS products, and launched business tools.</h4>
+          <p>We help modern businesses build the right digital system for growth, operations, support, and customer experience. The design keeps your gold and navy brand style while showing the same message as your ad in a cleaner web format.</p>
+          <div class="snapshot-points">
+            <div class="snapshot-point">
+              <strong>Scalable solutions</strong>
+              <span>Designed for growing companies and hotels.</span>
+            </div>
+            <div class="snapshot-point">
+              <strong>Reliable and secure</strong>
+              <span>Clean builds with practical business logic.</span>
+            </div>
+            <div class="snapshot-point">
+              <strong>On-time delivery</strong>
+              <span>Clear scope, structured work, and launch-ready output.</span>
+            </div>
+            <div class="snapshot-point">
+              <strong>Client focused</strong>
+              <span>Built around the result your business actually needs.</span>
+            </div>
+          </div>
+          <div class="snapshot-actions">
+            <a class="btn btn-main" href="#contact">Let's Talk About Your Project</a>
+            <div class="inline-contact">+91 7358145522</div>
+          </div>
+        </div>
+        <div class="snapshot-board">
+          <div class="board-head">
+            <div>
+              <span class="tag tag-dark">What we build</span>
+              <p>Business-ready digital products with launch support.</p>
+            </div>
+          </div>
+          <div class="board-grid">
+            <article class="board-card">
+              <span class="board-num">01</span>
+              <strong>Custom Web Applications</strong>
+              <p>Admin panels, dashboards, booking tools, and workflow systems.</p>
+            </article>
+            <article class="board-card">
+              <span class="board-num">02</span>
+              <strong>Startup Websites</strong>
+              <p>Strong landing pages, company sites, and lead-generation funnels.</p>
+            </article>
+            <article class="board-card">
+              <span class="board-num">03</span>
+              <strong>SaaS Product Development</strong>
+              <p>Authentication, billing-ready flows, analytics, and scalable structure.</p>
+            </article>
+            <article class="board-card">
+              <span class="board-num">04</span>
+              <strong>Maintenance & Support</strong>
+              <p>Post-launch fixes, updates, optimization, and feature improvements.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+      <div class="promise-bar">
+        <div class="promise-item">
+          <strong>Custom builds</strong>
+          <span>Website, app, or launched business product.</span>
+        </div>
+        <div class="promise-item">
+          <strong>Fast setup</strong>
+          <span>Practical solutions without unnecessary delay.</span>
+        </div>
+        <div class="promise-item">
+          <strong>Support plans</strong>
+          <span>Short-term help and long-term maintenance.</span>
+        </div>
+        <div class="promise-item">
+          <strong>Business-focused</strong>
+          <span>Every build is shaped around real use and growth.</span>
+        </div>
       </div>
     </div>
   </section>
@@ -186,63 +487,124 @@
       <h3>Industries We Serve</h3>
       <p class="sub">We design solutions tailored to business needs.</p>
       <div class="chips">
-        <span>Company</span><span>Hotel</span><span>Hospital</span><span>Business</span><span>Startup Business</span><span>Professional Services</span>
+        <span>Company</span>
+        <span>Hotel</span>
+        <span>Hospital</span>
+        <span>Business</span>
+        <span>Startup Business</span>
+        <span>Professional Services</span>
       </div>
     </div>
   </section>
 
-  <section id="products">
+  <section id="quotation">
     <div class="wrap">
-      <h3>Launched Product</h3>
-      <p class="sub">Our newly launched product for hotels is designed to convert guest feedback into stronger online reputation and better service improvement.</p>
-      <article class="product">
-        <div class="launch-grid">
-          <div>
+      <h3>Quotation & Pricing</h3>
+      <p class="sub">This section replaces the quotation poster with real website content, and it includes the hotel feedback product mentioned on this site.</p>
+      <div class="quote-layout">
+        <aside class="quote-sidebar">
+          <span class="tag tag-dark">Rnexa Quotation</span>
+          <h4>Clear pricing, product scope, and project notes.</h4>
+          <p>Pricing depends on pages, features, integrations, and delivery scope. The launched hotel product is listed separately here so clients can understand it directly from the website.</p>
+          <ul class="quote-side-list">
+            <li>Responsive design and mobile-friendly layouts.</li>
+            <li>Clean UI, practical business flow, and launch-ready setup.</li>
+            <li>Domain, third-party tools, SMS, WhatsApp API, and paid ads are separate when needed.</li>
+            <li>Maintenance plans are available after delivery or launch.</li>
+          </ul>
+          <div class="note-card">
+            <strong>Product note</strong>
+            <p>My Hotel Feedback System is shown below as a separate launched product with its own pricing and popup details.</p>
+          </div>
+        </aside>
+        <div class="quote-cards">
+          <article class="quote-card">
             <span class="tag">Hotel Product</span>
-            <h4>Guest Feedback to 5 Star Google Reviews</h4>
-            <p><strong>Private feedback and review growth system for hotels</strong></p>
-            <p>
-              This product helps hotels collect guest feedback instantly, solve issues privately, and increase positive Google reviews with a simple dashboard.
-            </p>
-            <p class="price">Starting at INR 1000 per month</p>
-            <ul class="feat">
-              <li>No hidden charges, quick setup in minutes.</li>
-              <li>Works on mobile, tablet, and desktop.</li>
-              <li>No app required for guests or hotel staff.</li>
-              <li>Track feedback, reports, and actions in one place.</li>
+            <h4>My Hotel Feedback System</h4>
+            <p>Guest feedback to Google review flow for hotels with private service recovery and a staff dashboard.</p>
+            <p class="quote-price">Starting at INR 1000 / month</p>
+            <ul class="quote-list">
+              <li>Guest feedback entry screen for tablet or mobile.</li>
+              <li>Private unhappy-guest form and secure feedback storage.</li>
+              <li>Happy guest redirection to review and QR flow.</li>
+              <li>Dashboard, reports, and simple hotel staff access.</li>
             </ul>
-          </div>
-          <div>
-            <img class="launch-image" src="./launched-product.png" alt="Rnexa launched hotel feedback product overview">
-          </div>
+            <div class="quote-actions">
+              <button class="btn btn-dark product-open" type="button" data-product="hotel-feedback">View launched product</button>
+            </div>
+          </article>
+          <article class="quote-card">
+            <span class="tag">Website</span>
+            <h4>Basic Business Website</h4>
+            <p>For companies, startups, hotels, and service businesses that need a strong online presence.</p>
+            <p class="quote-price">INR 8,000 - 15,000</p>
+            <ul class="quote-list">
+              <li>Responsive website with core pages.</li>
+              <li>Contact form and mobile-friendly layout.</li>
+              <li>Basic SEO structure and hosting deployment.</li>
+              <li>Brand styling matched to your business.</li>
+            </ul>
+          </article>
+          <article class="quote-card">
+            <span class="tag">Web App</span>
+            <h4>Custom Web Application</h4>
+            <p>For dashboards, admin panels, portals, and internal business tools.</p>
+            <p class="quote-price">Starting from INR 20,000+</p>
+            <ul class="quote-list">
+              <li>Pricing depends on features and workflow complexity.</li>
+              <li>User login, admin roles, and dashboard modules.</li>
+              <li>API integrations and database requirements.</li>
+              <li>Delivery timeline based on project scope.</li>
+            </ul>
+          </article>
+          <article class="quote-card">
+            <span class="tag">SaaS</span>
+            <h4>SaaS Product Development</h4>
+            <p>For clients building a product platform that needs scalable structure from the start.</p>
+            <p class="quote-price">Starting from INR 50,000+</p>
+            <ul class="quote-list">
+              <li>Dashboard, authentication system, and database setup.</li>
+              <li>Cloud deployment and scalable architecture.</li>
+              <li>Billing-ready flows and multi-user access when needed.</li>
+              <li>Support for launch planning and improvement roadmap.</li>
+            </ul>
+          </article>
         </div>
-        <div class="shots-grid">
-          <article class="shot-card">
-            <img src="./product-screen-1.png" alt="Hotel guest feedback first screen">
-            <p class="shot-title">Guest Feedback Entry Screen</p>
-          </article>
-          <article class="shot-card">
-            <img src="./product-screen-2.png" alt="Google review QR screen">
-            <p class="shot-title">Public Review QR Flow</p>
-          </article>
-          <article class="shot-card">
-            <img src="./product-screen-3.png" alt="Guest feedback form screen">
-            <p class="shot-title">Private Feedback Form</p>
-          </article>
-          <article class="shot-card">
-            <img src="./product-screen-4.png" alt="Thank you and review options screen">
-            <p class="shot-title">Thank You + Review CTA</p>
-          </article>
-          <article class="shot-card">
-            <img src="./dashboard-screen.png" alt="Hotel feedback dashboard with filters and reports">
-            <p class="shot-title">Hotel Dashboard & Reports</p>
-          </article>
-        </div>
-      </article>
+      </div>
     </div>
   </section>
 
-  
+  <section id="launched-products">
+    <div class="wrap">
+      <h3>Launched Products</h3>
+      <p class="sub">Tap or click a product card to open the launched product popup.</p>
+      <div class="products-grid">
+        <article class="product-tile product-clickable" data-product="hotel-feedback" role="button" tabindex="0" aria-label="Open My Hotel Feedback System launched product details">
+          <span class="tag">Launched Product</span>
+          <h4>My Hotel Feedback System</h4>
+          <p>This hotel product helps turn happy guests into public Google reviews while keeping unhappy guest feedback private for service improvement.</p>
+          <div class="product-meta">
+            <span>Hotel feedback</span>
+            <span>Google review flow</span>
+            <span>Private complaint handling</span>
+          </div>
+          <p class="price">Starting at INR 1000 per month</p>
+          <button class="btn btn-main product-open" type="button" data-product="hotel-feedback">Show launched product</button>
+        </article>
+        <article class="product-tile product-tile-muted">
+          <span class="tag tag-dark">Coming Soon</span>
+          <h4>More launched products are on the way.</h4>
+          <p>We are building more ready-to-use products for business growth, customer engagement, and operations support.</p>
+          <div class="product-meta">
+            <span>More business tools</span>
+            <span>More product launches</span>
+          </div>
+          <a class="btn btn-secondary" href="#contact">Ask About Upcoming Products</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section id="contact">
     <div class="wrap">
       <div class="contact">
@@ -286,6 +648,7 @@
                   <option>Business Website</option>
                   <option>Web Application</option>
                   <option>Website + Web Application</option>
+                  <option>Hotel Feedback System</option>
                   <option>Other Custom Software</option>
                 </select>
               </div>
@@ -305,9 +668,10 @@
   <footer>
     <div class="wrap">
       <strong><span class="r" style="color:#d4af37">R</span><span style="color:#000">nexa</span></strong> Software Solutions
-      <p style="margin: 10px 0 0 0; font-size: 14px; opacity: 0.8;">© 2026 All Rights Reserved</p>
+      <p style="margin:10px 0 0 0;font-size:14px;opacity:.8;">&copy; 2026 All Rights Reserved</p>
     </div>
   </footer>
+
   <div id="success-popup" class="success-pop" role="dialog" aria-modal="true" aria-labelledby="success-title">
     <div class="success-box">
       <h4 id="success-title">Thank You!</h4>
@@ -315,22 +679,95 @@
       <button id="popup-close" class="ok-btn" type="button">OK</button>
     </div>
   </div>
+
+  <div id="product-modal" class="product-modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title">
+    <div class="product-modal-card">
+      <div class="product-modal-head">
+        <div>
+          <span class="tag">Launched Product</span>
+          <h3 id="product-modal-title" style="margin-top:12px">My Hotel Feedback System</h3>
+          <p>Tap-ready hotel feedback flow that turns happy guests into public reviews and stores unhappy guest feedback privately.</p>
+        </div>
+        <button id="product-modal-close" class="close-modal" type="button">Close</button>
+      </div>
+      <div class="product-modal-grid">
+        <div>
+          <img class="launch-image" src="./launched-product.png" alt="Rnexa launched hotel feedback product overview">
+        </div>
+        <div>
+          <p><strong>Private feedback and review growth system for hotels</strong></p>
+          <p>This launched product helps hotels collect guest feedback instantly, solve issues privately, and increase positive Google reviews with a simple dashboard and easy staff flow.</p>
+          <p class="price">Starting at INR 1000 per month</p>
+          <ul class="feat">
+            <li>No hidden charges, quick setup in minutes.</li>
+            <li>Works on mobile, tablet, and desktop.</li>
+            <li>No app required for guests or hotel staff.</li>
+            <li>Track feedback, reports, and actions in one place.</li>
+          </ul>
+          <div class="modal-actions">
+            <a class="btn btn-main modal-anchor" href="#quotation">See Quotation</a>
+            <a class="btn btn-dark modal-anchor" href="#contact">Ask for Demo</a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-shots">
+        <article class="modal-shot">
+          <img src="./product-screen-1.png" alt="Hotel guest feedback first screen">
+          <p class="shot-title">Guest Feedback Entry Screen</p>
+        </article>
+        <article class="modal-shot">
+          <img src="./product-screen-2.png" alt="Google review QR screen">
+          <p class="shot-title">Public Review QR Flow</p>
+        </article>
+        <article class="modal-shot">
+          <img src="./product-screen-3.png" alt="Guest feedback form screen">
+          <p class="shot-title">Private Feedback Form</p>
+        </article>
+        <article class="modal-shot">
+          <img src="./product-screen-4.png" alt="Thank you and review options screen">
+          <p class="shot-title">Thank You + Review CTA</p>
+        </article>
+        <article class="modal-shot">
+          <img src="./dashboard-screen.png" alt="Hotel feedback dashboard with filters and reports">
+          <p class="shot-title">Hotel Dashboard & Reports</p>
+        </article>
+      </div>
+    </div>
+  </div>
+
   <a class="wa-float" href="https://wa.me/917358145522?text=Hello%20Rnexa%2C%20I%20need%20a%20website%20or%20web%20application." target="_blank" rel="noopener">
     WhatsApp
   </a>
+
   <script>
     function encodeForm(data) {
       return Object.keys(data)
-        .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .map(function (key) {
+          return encodeURIComponent(key) + "=" + encodeURIComponent(data[key]);
+        })
         .join("&");
+    }
+
+    function closeSuccessPopup() {
+      document.getElementById("success-popup").classList.remove("show");
+    }
+
+    function closeProductModal() {
+      document.getElementById("product-modal").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    function openProductModal() {
+      document.getElementById("product-modal").classList.add("show");
+      document.body.style.overflow = "hidden";
     }
 
     document.getElementById("project-form").addEventListener("submit", async function (event) {
       event.preventDefault();
-      const form = event.target;
-      const status = document.getElementById("form-status");
-      const popup = document.getElementById("success-popup");
-      const data = Object.fromEntries(new FormData(form).entries());
+      var form = event.target;
+      var status = document.getElementById("form-status");
+      var popup = document.getElementById("success-popup");
+      var data = Object.fromEntries(new FormData(form).entries());
 
       status.textContent = "Submitting your request...";
       try {
@@ -340,7 +777,7 @@
           body: encodeForm(data)
         });
 
-        const message = [
+        var message = [
           "New website inquiry",
           "Name: " + (data.name || ""),
           "Company: " + (data.company || ""),
@@ -359,15 +796,48 @@
       }
     });
 
-    document.getElementById("popup-close").addEventListener("click", function () {
-      document.getElementById("success-popup").classList.remove("show");
+    document.getElementById("popup-close").addEventListener("click", closeSuccessPopup);
+    document.getElementById("success-popup").addEventListener("click", function (event) {
+      if (event.target.id === "success-popup") {
+        closeSuccessPopup();
+      }
     });
 
-    const menuBtn = document.getElementById("menu-toggle");
-    const nav = document.getElementById("site-nav");
+    document.querySelectorAll(".product-open").forEach(function (button) {
+      button.addEventListener("click", function (event) {
+        event.stopPropagation();
+        openProductModal();
+      });
+    });
+
+    document.querySelectorAll(".product-clickable").forEach(function (card) {
+      card.addEventListener("click", openProductModal);
+      card.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openProductModal();
+        }
+      });
+    });
+
+    document.getElementById("product-modal-close").addEventListener("click", closeProductModal);
+    document.getElementById("product-modal").addEventListener("click", function (event) {
+      if (event.target.id === "product-modal") {
+        closeProductModal();
+      }
+    });
+
+    document.querySelectorAll(".modal-anchor").forEach(function (link) {
+      link.addEventListener("click", function () {
+        closeProductModal();
+      });
+    });
+
+    var menuBtn = document.getElementById("menu-toggle");
+    var nav = document.getElementById("site-nav");
 
     menuBtn.addEventListener("click", function () {
-      const isOpen = nav.classList.toggle("open");
+      var isOpen = nav.classList.toggle("open");
       menuBtn.setAttribute("aria-expanded", String(isOpen));
     });
 
@@ -378,6 +848,12 @@
       });
     });
 
-    </script>
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeSuccessPopup();
+        closeProductModal();
+      }
+    });
+  </script>
 </body>
 </html>
