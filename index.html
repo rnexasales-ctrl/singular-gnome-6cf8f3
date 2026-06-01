@@ -304,32 +304,35 @@
       .modal-shots{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
     @media (max-width:650px){
-      body{font-size:14px}
-      .wrap{width:min(100%,calc(100% - 20px))}
+      body{font-size:13px}
+      .wrap{width:min(100%,calc(100% - 16px))}
       .menu-btn{display:inline-flex}
       nav{
-        display:none;position:absolute;top:62px;left:16px;right:16px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;
-        box-shadow:0 12px 28px rgba(2,6,23,.12);padding:8px 4px
+        display:none;position:absolute;top:54px;left:8px;right:8px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;
+        box-shadow:0 12px 28px rgba(2,6,23,.12);padding:6px 4px
       }
       nav.open{display:block}
-      nav a{display:block;margin:0;padding:10px 12px}
-      .top .wrap{padding:10px 0}
-      .brandline{font-size:10px}
-      .brand-logo{width:50px;height:50px}
-      .logo{font-size:24px}
-      .hero{padding:32px 0 28px}
-      .hero .wrap{gap:14px}
-      .hero-kicker{margin-bottom:12px;padding:6px 10px;font-size:10px}
-      .hero-copy h2{font-size:28px}
-      .hero-copy p,.hero-panel p,.snapshot-copy p,.quote-card p,.product-tile p,.contact p{font-size:14px;line-height:1.45}
-      .hero-actions{gap:8px;margin-top:18px}
-      .btn{padding:10px 14px;border-radius:10px;font-size:14px}
-      .hero-panel,.snapshot-shell,.quote-sidebar,.quote-card,.product-tile,.contact{padding:14px;border-radius:18px}
-      .card,.promise-item,.snapshot-point,.board-card,.form-wrap,.success-box,.modal-shot,.offer-box,.note-card{padding:12px}
-      section{padding:26px 0}
-      h3{font-size:24px}
-      .sub{font-size:14px;margin-bottom:16px}
-      .snapshot-shell,.products-grid{gap:12px}
+      nav a{display:block;margin:0;padding:8px 10px;font-size:13px}
+      .top .wrap{padding:7px 0}
+      .brand{gap:8px}
+      .brandline{font-size:8px;letter-spacing:.08em}
+      .brand-logo{width:40px;height:40px}
+      .logo{font-size:20px}
+      .menu-btn{padding:8px 10px;border-radius:8px;font-size:12px}
+      .hero{padding:22px 0 20px}
+      .hero .wrap{gap:10px}
+      .hero-kicker{margin-bottom:10px;padding:5px 8px;font-size:9px;gap:7px}
+      .hero-kicker span{width:5px;height:5px}
+      .hero-copy h2{font-size:23px;line-height:1.1;margin-bottom:10px}
+      .hero-copy p,.hero-panel p,.snapshot-copy p,.quote-card p,.product-tile p,.contact p{font-size:12px;line-height:1.4}
+      .hero-actions{gap:7px;margin-top:14px}
+      .btn{padding:8px 11px;border-radius:8px;font-size:12px}
+      .hero-panel,.snapshot-shell,.quote-sidebar,.quote-card,.product-tile,.contact{padding:10px;border-radius:14px}
+      .card,.promise-item,.snapshot-point,.board-card,.form-wrap,.success-box,.modal-shot,.offer-box,.note-card{padding:10px}
+      section{padding:18px 0}
+      h3{font-size:20px;margin-bottom:7px}
+      .sub{font-size:12px;margin-bottom:12px;line-height:1.4}
+      .snapshot-shell,.products-grid{gap:10px}
       .snapshot-copy h4{font-size:30px;margin:10px 0}
       .snapshot-points{margin-top:12px;gap:10px}
       .snapshot-point strong,.board-card strong{font-size:15px}
@@ -345,27 +348,36 @@
         display:grid;
         grid-template-columns:1fr;
         overflow:visible;
-        gap:12px;
+        gap:10px;
         padding-bottom:0
       }
       .quote-card{
         min-height:auto
       }
-      .quote-card h4{font-size:20px;margin:10px 0 8px}
-      .quote-price,.price{padding:7px 10px;font-size:14px}
+      .product-image{aspect-ratio:16/7;border-radius:10px;margin-bottom:9px}
+      .quote-card h4{font-size:16px;margin:7px 0 6px}
+      .tag{padding:4px 7px;font-size:10px}
+      .old-price{font-size:12px;margin-top:8px}
+      .quote-price,.price{padding:6px 8px;font-size:12px;border-radius:8px;margin-top:8px}
       .quote-list{
-        margin-top:12px;
-        gap:8px 10px;
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        font-size:13px
+        margin-top:10px;
+        gap:6px 8px;
+        grid-template-columns:1fr;
+        font-size:12px
       }
-      .quote-list li{padding-left:14px;line-height:1.35}
-      .quote-actions{margin-top:14px}
-      .product-tile h4{font-size:20px}
+      .quote-list li{padding-left:13px;line-height:1.3}
+      .quote-actions{margin-top:10px}
+      .product-tile h4,.card h4{font-size:16px}
       .product-meta{gap:8px}
       .product-meta span{padding:6px 10px;font-size:12px}
       .field label,.help{font-size:12px}
       .grid,.hero-grid,.board-grid,.promise-bar,.products-grid,.form-grid{grid-template-columns:1fr}
+      .hero-grid{gap:8px}
+      .hero-card{padding:10px;border-radius:12px}
+      .hero-card strong{font-size:13px;margin-bottom:4px}
+      .hero-card span{font-size:12px}
+      .chips{gap:6px}
+      .chips span{padding:6px 9px;font-size:12px}
       .modal-shots{
         display:grid;
         grid-auto-flow:column;
@@ -380,9 +392,10 @@
       .modal-shot{scroll-snap-align:start}
       .modal-shot img{height:130px}
       .shot-title{font-size:12px}
-      .field input,.field select,.field textarea{padding:10px}
+      .field input,.field select,.field textarea{padding:8px 9px;font-size:12px;border-radius:8px}
+      .field textarea{min-height:90px}
       .submit-btn{width:100%}
-      .wa-float{right:12px;bottom:12px;padding:9px 12px;font-size:14px}
+      .wa-float{right:10px;bottom:10px;padding:8px 10px;font-size:12px}
     }
   </style>
 </head>
