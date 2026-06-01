@@ -168,7 +168,7 @@
     }
     .promise-item strong{display:block;margin-bottom:4px}
     .promise-item span{display:block;color:var(--muted);font-size:14px}
-    .quote-layout{display:grid;grid-template-columns:.88fr 1.12fr;gap:18px;align-items:start}
+    .quote-layout{display:block}
     .quote-sidebar{
       background:linear-gradient(180deg,#0f172a,#172339);color:#fff;border-radius:24px;
       padding:24px;box-shadow:var(--shadow)
@@ -194,7 +194,7 @@
     }
     .offer-box strong{display:block;font-size:15px;color:var(--gold-dark);margin-bottom:6px}
     .offer-box p{margin:0;color:#7c4a03}
-    .quote-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .quote-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:stretch}
     .quote-card{
       background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)
     }
@@ -206,7 +206,7 @@
     }
     .quote-card h4{font-size:22px;line-height:1.15;margin:12px 0 10px}
     .quote-card p{margin:0;color:var(--text)}
-    .product-desc{min-height:78px}
+    .product-desc{min-height:0}
     .quote-price{
       display:inline-block;margin:12px 0 0;padding:10px 14px;border-radius:12px;
       background:var(--soft);border:1px solid #fcd34d;color:var(--gold-dark);font-weight:800
@@ -247,10 +247,6 @@
     }
     .contact{background:#0f172a;color:#fff;border-radius:24px;padding:26px;box-shadow:var(--shadow)}
     .contact p{color:#d5dbe5}
-    .contacts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
-    .person{background:#172339;border:1px solid #334155;border-radius:16px;padding:14px}
-    .person h4{margin:0 0 6px}
-    .person .role{color:#e2e8f0;font-weight:600;margin:0 0 8px}
     .form-wrap{margin-top:20px;background:#111827;border:1px solid #334155;border-radius:18px;padding:16px}
     .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
     .field{display:flex;flex-direction:column;gap:6px}
@@ -298,13 +294,12 @@
     }
     .wa-float:hover{filter:brightness(.96)}
     @media (max-width:1024px){
-      .hero .wrap,.snapshot-shell,.quote-layout{grid-template-columns:1fr}
+      .hero .wrap,.snapshot-shell{grid-template-columns:1fr}
       .quote-cards,.products-grid{grid-template-columns:1fr 1fr}
       .modal-shots{grid-template-columns:repeat(3,minmax(0,1fr))}
     }
     @media (max-width:900px){
       .grid,.promise-bar,.board-grid,.quote-cards,.products-grid{grid-template-columns:1fr 1fr}
-      .contacts{grid-template-columns:1fr}
       .snapshot-points{grid-template-columns:1fr}
       .modal-shots{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
@@ -330,11 +325,11 @@
       .hero-actions{gap:8px;margin-top:18px}
       .btn{padding:10px 14px;border-radius:10px;font-size:14px}
       .hero-panel,.snapshot-shell,.quote-sidebar,.quote-card,.product-tile,.contact{padding:14px;border-radius:18px}
-      .card,.promise-item,.snapshot-point,.board-card,.person,.form-wrap,.success-box,.modal-shot,.offer-box,.note-card{padding:12px}
+      .card,.promise-item,.snapshot-point,.board-card,.form-wrap,.success-box,.modal-shot,.offer-box,.note-card{padding:12px}
       section{padding:26px 0}
       h3{font-size:24px}
       .sub{font-size:14px;margin-bottom:16px}
-      .snapshot-shell,.quote-layout,.products-grid{gap:12px}
+      .snapshot-shell,.products-grid{gap:12px}
       .snapshot-copy h4{font-size:30px;margin:10px 0}
       .snapshot-points{margin-top:12px;gap:10px}
       .snapshot-point strong,.board-card strong{font-size:15px}
@@ -346,21 +341,14 @@
       .promise-item strong{font-size:14px}
       .quote-sidebar h4{font-size:24px;margin:12px 0 10px}
       .quote-side-list{gap:8px}
-      .quote-cards{order:1}
-      .quote-sidebar{order:2}
       .quote-cards{
         display:grid;
-        grid-auto-flow:column;
-        grid-auto-columns:minmax(88%,1fr);
-        grid-template-columns:none;
-        overflow-x:auto;
+        grid-template-columns:1fr;
+        overflow:visible;
         gap:12px;
-        padding-bottom:4px;
-        scroll-snap-type:x mandatory;
-        overscroll-behavior-x:contain
+        padding-bottom:0
       }
       .quote-card{
-        scroll-snap-align:start;
         min-height:auto
       }
       .quote-card h4{font-size:20px;margin:10px 0 8px}
@@ -376,8 +364,7 @@
       .product-tile h4{font-size:20px}
       .product-meta{gap:8px}
       .product-meta span{padding:6px 10px;font-size:12px}
-      .contacts{gap:10px}
-      .person .role,.field label,.help{font-size:12px}
+      .field label,.help{font-size:12px}
       .grid,.hero-grid,.board-grid,.promise-bar,.products-grid,.form-grid{grid-template-columns:1fr}
       .modal-shots{
         display:grid;
@@ -511,21 +498,6 @@
       <h3>Quotation & Pricing</h3>
       <p class="sub">Choose the product you need. When you click a product, the contact form opens with that product selected.</p>
       <div class="quote-layout">
-        <aside class="quote-sidebar">
-          <span class="tag tag-dark">Rnexa Quotation</span>
-          <h4>Clear products, pricing, and project scope.</h4>
-          <p>Select a product below and send your details. If your requirement is different, choose "None Of Above" in the contact form.</p>
-          <ul class="quote-side-list">
-            <li>Responsive design and mobile-friendly layouts.</li>
-            <li>Clean UI, practical business flow, and launch-ready setup.</li>
-            <li>Domain, third-party tools, SMS, WhatsApp API, payment gateway charges, and paid ads are separate when needed.</li>
-            <li>Maintenance plans are available after delivery or launch.</li>
-          </ul>
-          <div class="note-card">
-            <strong>How to request a quote</strong>
-            <p>Click any product card, fill in your contact details, and submit the form. We will contact you with the next steps.</p>
-          </div>
-        </aside>
         <div class="quote-cards">
           <article class="quote-card product-clickable" data-service="Website Development" role="button" tabindex="0" aria-label="Select Website Development">
             <img class="product-image" src="./Website Development.png" alt="Website Development service poster">
@@ -602,18 +574,6 @@
       <div class="contact">
         <h3 style="margin-top:0;color:#fff">Let's build your project.</h3>
         <p>Select a product, send your requirements, and we will contact you with the next steps.</p>
-        <div class="contacts">
-          <article class="person">
-            <h4>Shahid</h4>
-            <p class="role">Founder</p>
-            <p><strong>Phone:</strong> xxxxxx</p>
-          </article>
-          <article class="person">
-            <h4>Deepak Raj</h4>
-            <p class="role">Co-founder / Business Development Manager</p>
-            <p><strong>Phone:</strong> xxxxxx</p>
-          </article>
-        </div>
         <div class="form-wrap">
           <form id="project-form" name="project-inquiry" method="POST">
             <div class="form-grid">
