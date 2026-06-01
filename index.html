@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rnexa Software Solution</title>
   <link rel="icon" href="logo.png" type="image/png">
-  <meta name="description" content="Rnexa Software Solution builds websites, web applications, SaaS products, and launched digital solutions for companies, hotels, hospitals, startups, and businesses.">
+  <meta name="description" content="Rnexa Software Solution builds websites, e-commerce websites, custom web applications, SaaS products, UI/UX designs, hosting plans, and review management systems.">
   <style>
     :root{
       --gold:#d4af37;
@@ -194,12 +194,20 @@
     .quote-card{
       background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)
     }
+    .quote-card.product-clickable{cursor:pointer}
+    .quote-card.product-clickable:hover{transform:translateY(-2px);transition:transform .18s ease, box-shadow .18s ease;box-shadow:0 20px 44px rgba(15,23,42,.12)}
+    .product-image{
+      width:100%;aspect-ratio:16/10;object-fit:cover;object-position:center;border-radius:16px;
+      border:1px solid #e2e8f0;margin-bottom:14px;display:block;background:#f8fafc
+    }
     .quote-card h4{font-size:22px;line-height:1.15;margin:12px 0 10px}
     .quote-card p{margin:0;color:var(--text)}
+    .product-desc{min-height:78px}
     .quote-price{
       display:inline-block;margin:12px 0 0;padding:10px 14px;border-radius:12px;
       background:var(--soft);border:1px solid #fcd34d;color:var(--gold-dark);font-weight:800
     }
+    .old-price{display:inline-block;margin:12px 8px 0 0;color:#64748b;text-decoration:line-through;font-weight:700}
     .quote-list{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}
     .quote-list li{position:relative;padding-left:18px;color:var(--text)}
     .quote-list li::before{
@@ -254,11 +262,11 @@
     .submit-btn:hover{opacity:.94}
     .help{margin:10px 0 0;color:#93c5fd;font-size:13px}
     footer{padding:22px 0 28px;border-top:1px solid var(--line);color:#64748b}
-    .success-pop,.product-modal{
+    .success-pop{
       position:fixed;inset:0;background:rgba(15,23,42,.78);display:none;align-items:center;justify-content:center;
       padding:16px;z-index:60
     }
-    .success-pop.show,.product-modal.show{display:flex}
+    .success-pop.show{display:flex}
     .success-box{
       width:min(480px,100%);background:#fff;border-radius:18px;padding:22px;border:1px solid var(--line);text-align:center
     }
@@ -267,15 +275,6 @@
     .ok-btn,.close-modal{
       background:#0f172a;color:#fff;border:none;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer
     }
-    .product-modal-card{
-      width:min(1120px,100%);max-height:calc(100vh - 32px);overflow:auto;background:#fff;
-      border-radius:24px;border:1px solid var(--line);padding:24px;box-shadow:0 22px 50px rgba(2,6,23,.26)
-    }
-    .product-modal-head{
-      display:flex;justify-content:space-between;gap:14px;align-items:start;margin-bottom:18px
-    }
-    .product-modal-head p{margin:8px 0 0;color:var(--text)}
-    .product-modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
     .launch-image{
       width:100%;border-radius:16px;border:1px solid #e2e8f0;box-shadow:0 10px 24px rgba(2,6,23,.08)
     }
@@ -295,7 +294,7 @@
     }
     .wa-float:hover{filter:brightness(.96)}
     @media (max-width:1024px){
-      .hero .wrap,.snapshot-shell,.quote-layout,.product-modal-grid{grid-template-columns:1fr}
+      .hero .wrap,.snapshot-shell,.quote-layout{grid-template-columns:1fr}
       .quote-cards,.products-grid{grid-template-columns:1fr 1fr}
       .modal-shots{grid-template-columns:repeat(3,minmax(0,1fr))}
     }
@@ -325,12 +324,12 @@
       .hero-copy p,.hero-panel p,.snapshot-copy p,.quote-card p,.product-tile p,.contact p{font-size:14px;line-height:1.45}
       .hero-actions{gap:8px;margin-top:18px}
       .btn{padding:10px 14px;border-radius:10px;font-size:14px}
-      .hero-panel,.snapshot-shell,.quote-sidebar,.quote-card,.product-tile,.contact,.product-modal-card{padding:14px;border-radius:18px}
+      .hero-panel,.snapshot-shell,.quote-sidebar,.quote-card,.product-tile,.contact{padding:14px;border-radius:18px}
       .card,.promise-item,.snapshot-point,.board-card,.person,.form-wrap,.success-box,.modal-shot,.offer-box,.note-card{padding:12px}
       section{padding:26px 0}
       h3{font-size:24px}
       .sub{font-size:14px;margin-bottom:16px}
-      .snapshot-shell,.quote-layout,.products-grid,.product-modal-grid{gap:12px}
+      .snapshot-shell,.quote-layout,.products-grid{gap:12px}
       .snapshot-copy h4{font-size:30px;margin:10px 0}
       .snapshot-points{margin-top:12px;gap:10px}
       .snapshot-point strong,.board-card strong{font-size:15px}
@@ -391,9 +390,6 @@
       .shot-title{font-size:12px}
       .field input,.field select,.field textarea{padding:10px}
       .submit-btn{width:100%}
-      .product-modal-head{flex-direction:column}
-      .product-modal-head h3{font-size:24px}
-      .product-modal-head p{font-size:14px}
       .wa-float{right:12px;bottom:12px;padding:9px 12px;font-size:14px}
     }
   </style>
@@ -411,7 +407,7 @@
       <nav id="site-nav">
         <a href="#services">Services</a>
         <a href="#quotation">Quotation</a>
-        <a href="#launched-products">Launched Products</a>
+        <a href="#launched-products">Products</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -422,15 +418,15 @@
       <div class="hero-copy">
         <div class="hero-kicker"><span></span>Build Maintain Scale</div>
         <h2>Digital solutions for modern businesses, hotels, and growing brands.</h2>
-        <p>Rnexa Software Solution creates websites, custom web applications, SaaS products, and launched business tools that help teams grow faster and work smarter.</p>
+        <p>Rnexa Software Solution creates websites, e-commerce stores, custom web applications, SaaS products, UI/UX designs, hosting support, and review management systems.</p>
         <div class="hero-actions">
           <a class="btn btn-main" href="#contact">Start Project</a>
-          <a class="btn btn-secondary" href="#launched-products">View Launched Products</a>
+          <a class="btn btn-secondary" href="#quotation">View Products</a>
         </div>
       </div>
       <aside class="hero-panel">
         <h3>What we deliver</h3>
-        <p>Clean design, business-first development, reliable support, and practical launched products.</p>
+        <p>Clean design, business-first development, reliable support, and practical digital products.</p>
         <div class="hero-grid">
           <div class="hero-card">
             <strong>Business Websites</strong>
@@ -576,81 +572,87 @@
   <section id="quotation">
     <div class="wrap">
       <h3>Quotation & Pricing</h3>
-      <p class="sub">This section replaces the quotation poster with real website content, and it includes the hotel feedback product mentioned on this site.</p>
+      <p class="sub">Choose the product you need. When you click a product, the contact form opens with that product selected.</p>
       <div class="quote-layout">
         <aside class="quote-sidebar">
           <span class="tag tag-dark">Rnexa Quotation</span>
-          <h4>Clear pricing, product scope, and project notes.</h4>
-          <p>Pricing depends on pages, features, integrations, and delivery scope. The launched hotel product is listed separately here so clients can understand it directly from the website.</p>
+          <h4>Clear products, pricing, and project scope.</h4>
+          <p>Select a product below and send your details. If your requirement is different, choose "None Of Above" in the contact form.</p>
           <ul class="quote-side-list">
             <li>Responsive design and mobile-friendly layouts.</li>
             <li>Clean UI, practical business flow, and launch-ready setup.</li>
-            <li>Domain, third-party tools, SMS, WhatsApp API, and paid ads are separate when needed.</li>
+            <li>Domain, third-party tools, SMS, WhatsApp API, payment gateway charges, and paid ads are separate when needed.</li>
             <li>Maintenance plans are available after delivery or launch.</li>
           </ul>
           <div class="note-card">
-            <strong>Product note</strong>
-            <p>My Hotel Feedback System is shown below as a separate launched product with monthly pricing, 7-day free trial, coupon offer, and popup details.</p>
+            <strong>How to request a quote</strong>
+            <p>Click any product card, fill in your contact details, and submit the form. We will contact you with the next steps.</p>
           </div>
         </aside>
         <div class="quote-cards">
-          <article class="quote-card">
-            <span class="tag">Hotel Product</span>
-            <h4>My Hotel Feedback System</h4>
-            <p>Guest feedback to Google review flow for hotels with private service recovery and a staff dashboard.</p>
-            <p class="quote-price">INR 3,000 + tax / month</p>
-            <ul class="quote-list">
-              <li>Guest feedback entry screen for tablet or mobile.</li>
-              <li>Private unhappy-guest form and secure feedback storage.</li>
-              <li>Happy guest redirection to review and QR flow.</li>
-              <li>Dashboard, reports, and simple hotel staff access.</li>
-              <li>7-day free trial before billing starts.</li>
-              <li>Coupon code <strong>RNEXAFIRST</strong> gives 33% discount on one chosen month only.</li>
-              <li>Coupon applies only to My Hotel Feedback System.</li>
-              <li>Use first, receive invoice after use, then pay.</li>
-            </ul>
-            <div class="offer-box">
-              <strong>Launch Offer</strong>
-              <p>Hotels can try the system for 7 days free. Use coupon code <strong>RNEXAFIRST</strong> for 33% discount on one selected billing month.</p>
-            </div>
-            <div class="quote-actions">
-              <button class="btn btn-dark product-open" type="button" data-product="hotel-feedback">View launched product</button>
-            </div>
+          <article class="quote-card product-clickable" data-service="Website Development" role="button" tabindex="0" aria-label="Select Website Development">
+            <img class="product-image" src="./Website Development.png" alt="Website Development service poster">
+            <span class="tag">Software Development</span>
+            <h4>Website Development</h4>
+            <p class="product-desc">Professional responsive business websites with mobile-friendly design, contact forms, SEO optimization, and fast loading performance.</p>
+            <span class="old-price">₹8,000</span>
+            <p class="quote-price">₹6,999</p>
           </article>
-          <article class="quote-card">
-            <span class="tag">Website</span>
-            <h4>Basic Business Website</h4>
-            <p>For companies, startups, hotels, and service businesses that need a strong online presence.</p>
-            <p class="quote-price">INR 8,000 - 15,000</p>
-            <ul class="quote-list">
-              <li>Responsive website with core pages.</li>
-              <li>Contact form and mobile-friendly layout.</li>
-              <li>Basic SEO structure and hosting deployment.</li>
-              <li>Brand styling matched to your business.</li>
-            </ul>
+          <article class="quote-card product-clickable" data-service="E-Commerce Website Development" role="button" tabindex="0" aria-label="Select E-Commerce Website Development">
+            <img class="product-image" src="./E-Commerce Website Development.png" alt="E-Commerce Website Development service poster">
+            <span class="tag">Software Development</span>
+            <h4>E-Commerce Website Development</h4>
+            <p class="product-desc">Online store development with payment gateway integration, product management, order tracking, and mobile responsiveness.</p>
+            <span class="old-price">₹15,000</span>
+            <p class="quote-price">₹12,999</p>
           </article>
-          <article class="quote-card">
-            <span class="tag">Web App</span>
-            <h4>Custom Web Application</h4>
-            <p>For dashboards, admin panels, portals, and internal business tools.</p>
-            <p class="quote-price">Starting from INR 20,000+</p>
-            <ul class="quote-list">
-              <li>Pricing depends on features and workflow complexity.</li>
-              <li>User login, admin roles, and dashboard modules.</li>
-              <li>API integrations and database requirements.</li>
-              <li>Delivery timeline based on project scope.</li>
-            </ul>
+          <article class="quote-card product-clickable" data-service="Custom Web Application Development" role="button" tabindex="0" aria-label="Select Custom Web Application Development">
+            <img class="product-image" src="./Custom Web Application Development.jpeg" alt="Custom Web Application Development service poster">
+            <span class="tag">Software Development</span>
+            <h4>Custom Web Application Development</h4>
+            <p class="product-desc">Custom web applications, admin panels, CRM systems, booking platforms, and business automation software tailored to your requirements.</p>
+            <span class="old-price">₹25,000</span>
+            <p class="quote-price">₹19,999</p>
           </article>
-          <article class="quote-card">
-            <span class="tag">SaaS</span>
+          <article class="quote-card product-clickable" data-service="SaaS Product Development" role="button" tabindex="0" aria-label="Select SaaS Product Development">
+            <img class="product-image" src="./SaaS Product Development.jpeg" alt="SaaS Product Development service poster">
+            <span class="tag">Software Development</span>
             <h4>SaaS Product Development</h4>
-            <p>For clients building a product platform that needs scalable structure from the start.</p>
-            <p class="quote-price">Starting from INR 50,000+</p>
+            <p class="product-desc">End-to-end SaaS product development including UI/UX design, development, deployment, cloud hosting, and maintenance.</p>
+            <span class="old-price">₹50,000</span>
+            <p class="quote-price">₹44,999</p>
+          </article>
+          <article class="quote-card product-clickable" data-service="UI/UX Design Services" role="button" tabindex="0" aria-label="Select UI/UX Design Services">
+            <img class="product-image" src="./UI_UX Design Services.jpeg" alt="UI/UX Design Services poster">
+            <span class="tag">Design Service</span>
+            <h4>UI/UX Design Services</h4>
+            <p class="product-desc">Modern and user-friendly UI/UX design for websites, mobile applications, SaaS platforms, and business software.</p>
+            <span class="old-price">₹5,000</span>
+            <p class="quote-price">₹3,999</p>
+          </article>
+          <article class="quote-card product-clickable" data-service="Website Maintenance & Hosting" role="button" tabindex="0" aria-label="Select Website Maintenance and Hosting">
+            <img class="product-image" src="./Website Maintenance & Hosting.jpeg" alt="Website Maintenance and Hosting service poster">
+            <span class="tag">IT Services</span>
+            <h4>Website Maintenance & Hosting</h4>
+            <p class="product-desc">Website updates, security monitoring, backups, hosting setup, SSL installation, bug fixes, and technical support.</p>
+            <span class="old-price">₹2,000/month</span>
+            <p class="quote-price">₹1,499/month</p>
+          </article>
+          <article class="quote-card product-clickable" data-service="Smart Review & Feedback Management System" role="button" tabindex="0" aria-label="Select Smart Review and Feedback Management System">
+            <img class="product-image" src="./Smart Review & Feedback Management System.jpeg" alt="Smart Review and Feedback Management System poster">
+            <span class="tag">Software Solution</span>
+            <h4>Smart Review & Feedback Management System</h4>
+            <p class="product-desc">Collect customer feedback and increase online reviews with a smart QR-code-based review system for hotels, restaurants, cafes, salons, gyms, clinics, hospitals, retail stores, service centers, and other businesses.</p>
+            <span class="old-price">₹999/month</span>
+            <p class="quote-price">₹499/month</p>
             <ul class="quote-list">
-              <li>Dashboard, authentication system, and database setup.</li>
-              <li>Cloud deployment and scalable architecture.</li>
-              <li>Billing-ready flows and multi-user access when needed.</li>
-              <li>Support for launch planning and improvement roadmap.</li>
+              <li>QR code feedback collection.</li>
+              <li>Google review growth.</li>
+              <li>Customer satisfaction tracking.</li>
+              <li>Real-time dashboard.</li>
+              <li>Negative feedback management.</li>
+              <li>Multi-business support.</li>
+              <li>Easy setup and management.</li>
             </ul>
           </article>
         </div>
@@ -660,33 +662,30 @@
 
   <section id="launched-products">
     <div class="wrap">
-      <h3>Launched Products</h3>
-      <p class="sub">Tap or click a product card to open the launched product popup.</p>
+      <h3>Product Selection</h3>
+      <p class="sub">The latest Rnexa products are listed in the quotation section above. Select a product there or contact us for a custom requirement.</p>
       <div class="products-grid">
-        <article class="product-tile product-clickable" data-product="hotel-feedback" role="button" tabindex="0" aria-label="Open My Hotel Feedback System launched product details">
-          <span class="tag">Launched Product</span>
-          <h4>My Hotel Feedback System</h4>
-          <p>This hotel product helps turn happy guests into public Google reviews while keeping unhappy guest feedback private for service improvement, with trial-first billing.</p>
+        <article class="product-tile">
+          <span class="tag">Products</span>
+          <h4>Choose from our ready service list.</h4>
+          <p>Website development, e-commerce, custom web applications, SaaS product development, UI/UX design, maintenance, hosting, and review management are available.</p>
           <div class="product-meta">
-            <span>Hotel feedback</span>
-            <span>Google review flow</span>
-            <span>Private complaint handling</span>
-            <span>7-day free trial</span>
-            <span>Coupon RNEXAFIRST</span>
+            <span>Software development</span>
+            <span>Design service</span>
+            <span>IT services</span>
+            <span>Software solution</span>
           </div>
-          <p class="price">INR 3,000 + tax / month</p>
-          <p>33% discount is available on one chosen month only with coupon code <strong>RNEXAFIRST</strong>. Billing happens after use: first use, then invoice, then pay.</p>
-          <button class="btn btn-main product-open" type="button" data-product="hotel-feedback">Show launched product</button>
+          <a class="btn btn-main" href="#quotation">View Products</a>
         </article>
         <article class="product-tile product-tile-muted">
-          <span class="tag tag-dark">Coming Soon</span>
-          <h4>More launched products are on the way.</h4>
-          <p>We are building more ready-to-use products for business growth, customer engagement, and operations support.</p>
+          <span class="tag tag-dark">Custom Requirement</span>
+          <h4>Need something different?</h4>
+          <p>Select "None Of Above" in the contact form and describe what you want to build.</p>
           <div class="product-meta">
-            <span>More business tools</span>
-            <span>More product launches</span>
+            <span>Custom software</span>
+            <span>Business automation</span>
           </div>
-          <a class="btn btn-secondary" href="#contact">Ask About Upcoming Products</a>
+          <a class="btn btn-secondary" href="#contact">Contact Us</a>
         </article>
       </div>
     </div>
@@ -695,8 +694,8 @@
   <section id="contact">
     <div class="wrap">
       <div class="contact">
-        <h3 style="margin-top:0;color:#fff">Let's build your website.</h3>
-        <p>Send your requirements and we will create the right solution for your business.</p>
+        <h3 style="margin-top:0;color:#fff">Let's build your project.</h3>
+        <p>Select a product, send your requirements, and we will contact you with the next steps.</p>
         <div class="contacts">
           <article class="person">
             <h4>Shahid</h4>
@@ -729,14 +728,17 @@
                 <input id="email" name="email" type="email" required>
               </div>
               <div class="field full">
-                <label for="service">What do you need?</label>
+                <label for="service">Select Product</label>
                 <select id="service" name="service" required>
-                  <option value="">Select requirement</option>
-                  <option>Business Website</option>
-                  <option>Web Application</option>
-                  <option>Website + Web Application</option>
-                  <option>Hotel Feedback System</option>
-                  <option>Other Custom Software</option>
+                  <option value="">Select product</option>
+                  <option>Website Development</option>
+                  <option>E-Commerce Website Development</option>
+                  <option>Custom Web Application Development</option>
+                  <option>SaaS Product Development</option>
+                  <option>UI/UX Design Services</option>
+                  <option>Website Maintenance & Hosting</option>
+                  <option>Smart Review & Feedback Management System</option>
+                  <option>None Of Above</option>
                 </select>
               </div>
               <div class="field full">
@@ -767,69 +769,6 @@
     </div>
   </div>
 
-  <div id="product-modal" class="product-modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title">
-    <div class="product-modal-card">
-      <div class="product-modal-head">
-        <div>
-          <span class="tag">Launched Product</span>
-          <h3 id="product-modal-title" style="margin-top:12px">My Hotel Feedback System</h3>
-          <p>Tap-ready hotel feedback flow that turns happy guests into public reviews and stores unhappy guest feedback privately, with a free trial and post-use billing.</p>
-        </div>
-        <button id="product-modal-close" class="close-modal" type="button">Close</button>
-      </div>
-      <div class="product-modal-grid">
-        <div>
-          <img class="launch-image" src="./launched-product.png" alt="Rnexa launched hotel feedback product overview">
-        </div>
-        <div>
-          <p><strong>Private feedback and review growth system for hotels</strong></p>
-          <p>This launched product helps hotels collect guest feedback instantly, solve issues privately, and increase positive Google reviews with a simple dashboard and easy staff flow.</p>
-          <p class="price">INR 3,000 + tax / month</p>
-          <ul class="feat">
-            <li>No hidden charges, quick setup in minutes.</li>
-            <li>Works on mobile, tablet, and desktop.</li>
-            <li>No app required for guests or hotel staff.</li>
-            <li>Track feedback, reports, and actions in one place.</li>
-            <li>7-day free trial before billing starts.</li>
-            <li>Coupon code <strong>RNEXAFIRST</strong> gives 33% discount on one chosen billing month.</li>
-            <li>Coupon applies only to My Hotel Feedback System.</li>
-            <li>Billing is after use only: first use the system, then receive invoice, then pay.</li>
-          </ul>
-          <div class="offer-box">
-            <strong>Special Offer</strong>
-            <p>Use coupon code <strong>RNEXAFIRST</strong> to get 33% discount for one selected month only on My Hotel Feedback System.</p>
-          </div>
-          <div class="modal-actions">
-            <a class="btn btn-main modal-anchor" href="#quotation">See Quotation</a>
-            <a class="btn btn-dark modal-anchor" href="#contact">Ask for Demo</a>
-          </div>
-        </div>
-      </div>
-      <div class="modal-shots">
-        <article class="modal-shot">
-          <img src="./product-screen-1.png" alt="Hotel guest feedback first screen">
-          <p class="shot-title">Guest Feedback Entry Screen</p>
-        </article>
-        <article class="modal-shot">
-          <img src="./product-screen-2.png" alt="Google review QR screen">
-          <p class="shot-title">Public Review QR Flow</p>
-        </article>
-        <article class="modal-shot">
-          <img src="./product-screen-3.png" alt="Guest feedback form screen">
-          <p class="shot-title">Private Feedback Form</p>
-        </article>
-        <article class="modal-shot">
-          <img src="./product-screen-4.png" alt="Thank you and review options screen">
-          <p class="shot-title">Thank You + Review CTA</p>
-        </article>
-        <article class="modal-shot">
-          <img src="./dashboard-screen.png" alt="Hotel feedback dashboard with filters and reports">
-          <p class="shot-title">Hotel Dashboard & Reports</p>
-        </article>
-      </div>
-    </div>
-  </div>
-
   <a class="wa-float" href="https://wa.me/917358145522?text=Hello%20Rnexa%2C%20I%20need%20a%20website%20or%20web%20application." target="_blank" rel="noopener">
     WhatsApp
   </a>
@@ -847,14 +786,16 @@
       document.getElementById("success-popup").classList.remove("show");
     }
 
-    function closeProductModal() {
-      document.getElementById("product-modal").classList.remove("show");
-      document.body.style.overflow = "";
-    }
-
-    function openProductModal() {
-      document.getElementById("product-modal").classList.add("show");
-      document.body.style.overflow = "hidden";
+    function selectProductAndContact(productName) {
+      var serviceSelect = document.getElementById("service");
+      var contactSection = document.getElementById("contact");
+      if (productName) {
+        serviceSelect.value = productName;
+      }
+      contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.setTimeout(function () {
+        document.getElementById("name").focus();
+      }, 450);
     }
 
     document.getElementById("project-form").addEventListener("submit", async function (event) {
@@ -863,6 +804,12 @@
       var status = document.getElementById("form-status");
       var popup = document.getElementById("success-popup");
       var data = Object.fromEntries(new FormData(form).entries());
+
+      if (!data.service) {
+        status.textContent = "Please select a product. Choose None Of Above if your requirement is different.";
+        document.getElementById("service").focus();
+        return;
+      }
 
       status.textContent = "Submitting your request...";
       try {
@@ -901,30 +848,19 @@
     document.querySelectorAll(".product-open").forEach(function (button) {
       button.addEventListener("click", function (event) {
         event.stopPropagation();
-        openProductModal();
+        selectProductAndContact(button.dataset.service || "");
       });
     });
 
     document.querySelectorAll(".product-clickable").forEach(function (card) {
-      card.addEventListener("click", openProductModal);
+      card.addEventListener("click", function () {
+        selectProductAndContact(card.dataset.service || "");
+      });
       card.addEventListener("keydown", function (event) {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-          openProductModal();
+          selectProductAndContact(card.dataset.service || "");
         }
-      });
-    });
-
-    document.getElementById("product-modal-close").addEventListener("click", closeProductModal);
-    document.getElementById("product-modal").addEventListener("click", function (event) {
-      if (event.target.id === "product-modal") {
-        closeProductModal();
-      }
-    });
-
-    document.querySelectorAll(".modal-anchor").forEach(function (link) {
-      link.addEventListener("click", function () {
-        closeProductModal();
       });
     });
 
@@ -946,7 +882,6 @@
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape") {
         closeSuccessPopup();
-        closeProductModal();
       }
     });
   </script>
