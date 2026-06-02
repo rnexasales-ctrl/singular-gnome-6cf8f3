@@ -10,15 +10,15 @@
     :root{
       --gold:#d4af37;
       --gold-dark:#7c4a03;
-      --black:#0f172a;
-      --navy:#172339;
-      --text:#334155;
-      --muted:#64748b;
-      --bg:#f8fafc;
+      --black:#f8fafc;
+      --navy:#111827;
+      --text:#d5dbe5;
+      --muted:#94a3b8;
+      --bg:#07111f;
       --white:#ffffff;
-      --line:#e2e8f0;
+      --line:rgba(255,255,255,.12);
       --soft:#fff7d6;
-      --shadow:0 18px 40px rgba(15,23,42,.08);
+      --shadow:0 18px 44px rgba(2,6,23,.32);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -26,14 +26,15 @@
       margin:0;
       font-family:Segoe UI,Arial,sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(212,175,55,.12), transparent 20%),
-        linear-gradient(180deg, #fbfcff 0%, var(--bg) 100%);
+        radial-gradient(circle at 12% 6%, rgba(212,175,55,.16), transparent 22%),
+        radial-gradient(circle at 88% 18%, rgba(56,189,248,.12), transparent 24%),
+        linear-gradient(180deg, #050b14 0%, var(--bg) 48%, #050b14 100%);
       color:var(--black);
       line-height:1.6
     }
     .wrap{width:min(1140px,calc(100% - 32px));margin:0 auto}
     .top{
-      position:sticky;top:0;background:#ffffffeb;backdrop-filter:blur(8px);
+      position:sticky;top:0;background:rgba(5,11,20,.78);backdrop-filter:blur(14px);
       border-bottom:1px solid var(--line);z-index:20
     }
     .top .wrap{display:flex;justify-content:space-between;align-items:center;padding:14px 0;gap:14px}
@@ -44,7 +45,7 @@
     }
     .logo{margin:0;font-size:30px;font-weight:800}
     .logo .r{color:var(--gold)}
-    .logo .nexa{color:#000}
+    .logo .nexa{color:#fff}
     .brandline{
       margin:0;color:#7c6225;font-weight:700;letter-spacing:.12em;
       text-transform:uppercase;font-size:12px
@@ -53,7 +54,7 @@
       display:none;background:#0f172a;color:#fff;border:none;border-radius:10px;
       padding:10px 12px;font-weight:700;cursor:pointer
     }
-    nav a{text-decoration:none;color:var(--text);font-weight:600;margin-left:16px}
+    nav a{text-decoration:none;color:#dbeafe;font-weight:600;margin-left:16px}
     nav a:hover{color:var(--gold)}
     .hero{
       position:relative;
@@ -189,9 +190,11 @@
     }
     .features-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
     .feature-card{
-      background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)
+      background:linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.045));
+      border:1px solid rgba(255,255,255,.13);border-radius:18px;padding:18px;box-shadow:var(--shadow);
+      backdrop-filter:blur(12px)
     }
-    .feature-card strong{display:block;font-size:16px;margin-bottom:6px}
+    .feature-card strong{display:block;font-size:16px;margin-bottom:6px;color:#fff}
     .feature-card span{display:block;color:var(--text);font-size:14px;line-height:1.45}
     section{padding:56px 0}
     h3{font-size:clamp(28px,3vw,34px);margin:0 0 10px}
@@ -199,14 +202,16 @@
     .sub{margin:0 0 22px;color:var(--text)}
     .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
     .card{
-      background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow)
+      background:linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.045));
+      border:1px solid rgba(255,255,255,.13);border-radius:18px;padding:22px;box-shadow:var(--shadow);
+      backdrop-filter:blur(12px)
     }
-    .card h4{margin:0 0 8px;font-size:20px}
+    .card h4{margin:0 0 8px;font-size:20px;color:#fff}
     .card p{margin:0;color:var(--text)}
     .chips{display:flex;flex-wrap:wrap;gap:10px}
     .chips span{
-      border:1px solid #cbd5e1;background:#fff;padding:8px 14px;border-radius:999px;
-      font-weight:600;color:var(--text)
+      border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);padding:8px 14px;border-radius:999px;
+      font-weight:600;color:#e2e8f0;backdrop-filter:blur(10px)
     }
     .tag{
       display:inline-block;background:#fef3c7;border:1px solid #fcd34d;color:#854d0e;
@@ -295,22 +300,24 @@
     .offer-box p{margin:0;color:#7c4a03}
     .quote-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:stretch}
     .quote-card{
-      background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)
+      background:linear-gradient(145deg, rgba(255,255,255,.11), rgba(255,255,255,.045));
+      border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:22px;box-shadow:var(--shadow);
+      backdrop-filter:blur(12px)
     }
     .quote-card.product-clickable{cursor:pointer}
     .quote-card.product-clickable:hover{transform:translateY(-2px);transition:transform .18s ease, box-shadow .18s ease;box-shadow:0 20px 44px rgba(15,23,42,.12)}
     .product-image{
       width:100%;aspect-ratio:16/10;object-fit:cover;object-position:center;border-radius:16px;
-      border:1px solid #e2e8f0;margin-bottom:14px;display:block;background:#f8fafc
+      border:1px solid rgba(255,255,255,.14);margin-bottom:14px;display:block;background:#111827
     }
-    .quote-card h4{font-size:22px;line-height:1.15;margin:12px 0 10px}
+    .quote-card h4{font-size:22px;line-height:1.15;margin:12px 0 10px;color:#fff}
     .quote-card p{margin:0;color:var(--text)}
     .product-desc{min-height:0}
     .quote-price{
       display:inline-block;margin:12px 0 0;padding:10px 14px;border-radius:12px;
       background:var(--soft);border:1px solid #fcd34d;color:var(--gold-dark);font-weight:800
     }
-    .old-price{display:inline-block;margin:12px 8px 0 0;color:#64748b;text-decoration:line-through;font-weight:700}
+    .old-price{display:inline-block;margin:12px 8px 0 0;color:#94a3b8;text-decoration:line-through;font-weight:700}
     .quote-list{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}
     .quote-list li{position:relative;padding-left:18px;color:var(--text)}
     .quote-list li::before{
@@ -344,7 +351,10 @@
     .product-tile-muted .product-meta span{
       background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#fff
     }
-    .contact{background:#0f172a;color:#fff;border-radius:24px;padding:26px;box-shadow:var(--shadow)}
+    .contact{
+      background:linear-gradient(145deg, rgba(15,23,42,.94), rgba(17,24,39,.82));
+      color:#fff;border-radius:24px;padding:26px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.12)
+    }
     .contact p{color:#d5dbe5}
     .form-wrap{margin-top:20px;background:#111827;border:1px solid #334155;border-radius:18px;padding:16px}
     .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
@@ -360,7 +370,7 @@
     }
     .submit-btn:hover{opacity:.94}
     .help{margin:10px 0 0;color:#93c5fd;font-size:13px}
-    footer{padding:22px 0 28px;border-top:1px solid var(--line);color:#64748b}
+    footer{padding:22px 0 28px;border-top:1px solid var(--line);color:#94a3b8}
     .success-pop{
       position:fixed;inset:0;background:rgba(15,23,42,.78);display:none;align-items:center;justify-content:center;
       padding:16px;z-index:60
@@ -407,7 +417,7 @@
       .wrap{width:min(100%,calc(100% - 16px))}
       .menu-btn{display:inline-flex}
       nav{
-        display:none;position:absolute;top:54px;left:8px;right:8px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;
+        display:none;position:absolute;top:54px;left:8px;right:8px;background:rgba(5,11,20,.96);border:1px solid rgba(255,255,255,.14);border-radius:10px;
         box-shadow:0 12px 28px rgba(2,6,23,.12);padding:6px 4px
       }
       nav.open{display:block}
@@ -553,7 +563,7 @@
       <div class="hero-visual" aria-hidden="true">
         <div class="crystal-stage">
           <div class="crystal-floor"></div>
-          <div class="future-badge">30,000+ FUTURE FEATURES</div>
+          <div class="future-badge">FUTURE READY</div>
           <span class="crystal-shard s1"></span>
           <span class="crystal-shard s2"></span>
           <span class="crystal-shard s3"></span>
@@ -577,8 +587,8 @@
 
   <section id="features">
     <div class="wrap">
-      <h3>30,000+ Future-Ready Features</h3>
-      <p class="sub">A crystal-clean digital experience with the features modern businesses need to scale.</p>
+      <h3>Future-Ready Features</h3>
+      <p class="sub">A crystal-clean digital experience with the tools modern businesses need to scale.</p>
       <div class="features-grid">
         <article class="feature-card">
           <strong>Crystal-Clean UI</strong>
@@ -781,7 +791,7 @@
 
   <footer>
     <div class="wrap">
-      <strong><span class="r" style="color:#d4af37">R</span><span style="color:#000">nexa</span></strong> Software Solutions
+      <strong><span class="r" style="color:#d4af37">R</span><span style="color:#fff">nexa</span></strong> Software Solutions
       <p style="margin:10px 0 0 0;font-size:14px;opacity:.8;">&copy; 2026 All Rights Reserved</p>
     </div>
   </footer>
