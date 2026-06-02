@@ -56,11 +56,20 @@
     nav a{text-decoration:none;color:var(--text);font-weight:600;margin-left:16px}
     nav a:hover{color:var(--gold)}
     .hero{
+      position:relative;
       background:
         radial-gradient(circle at 85% 18%, rgba(212,175,55,.22), transparent 16%),
         linear-gradient(135deg,#0f172a,#172339 48%,#1f2937);
       color:#fff;padding:78px 0 64px;overflow:hidden
     }
+    .hero::before{
+      content:"";position:absolute;inset:0;
+      background:
+        radial-gradient(circle at 76% 42%, rgba(212,175,55,.18), transparent 22%),
+        radial-gradient(circle at 92% 74%, rgba(56,189,248,.12), transparent 24%);
+      pointer-events:none
+    }
+    .hero .wrap{position:relative;z-index:1}
     .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center}
     .hero-copy h2{font-size:clamp(34px,5vw,56px);line-height:1.05;margin:0 0 14px}
     .hero-copy p{margin:0 0 18px;color:#d5dbe5;max-width:680px}
@@ -94,6 +103,88 @@
     }
     .hero-card strong{display:block;font-size:16px;margin-bottom:6px;color:#fff}
     .hero-card span{display:block;font-size:14px;color:#d5dbe5}
+    .hero-visual{
+      position:relative;min-height:430px;display:grid;place-items:center;perspective:1100px;isolation:isolate
+    }
+    .hero-visual::before{
+      content:"";position:absolute;width:78%;height:78%;border-radius:50%;
+      background:radial-gradient(circle, rgba(212,175,55,.26), rgba(56,189,248,.08) 38%, transparent 70%);
+      filter:blur(18px);opacity:.82;animation:visualGlow 7s ease-in-out infinite
+    }
+    .orbital-stage{
+      position:relative;width:min(460px,100%);aspect-ratio:1;transform-style:preserve-3d;
+      animation:stageFloat 6s ease-in-out infinite;will-change:transform
+    }
+    .orbit-ring{
+      position:absolute;inset:8%;border:1px solid rgba(255,255,255,.16);border-radius:50%;
+      transform:rotateX(67deg) rotateZ(-16deg);box-shadow:0 0 36px rgba(212,175,55,.12)
+    }
+    .orbit-ring.r2{inset:18%;transform:rotateX(67deg) rotateZ(36deg);animation:ringSpin 18s linear infinite}
+    .orbit-ring.r3{inset:29%;border-color:rgba(212,175,55,.24);transform:rotateX(67deg) rotateZ(82deg);animation:ringSpin 24s linear infinite reverse}
+    .core-cube{
+      position:absolute;left:50%;top:50%;width:132px;height:132px;transform-style:preserve-3d;
+      transform:translate(-50%,-50%) rotateX(-18deg) rotateY(32deg);animation:cubeTurn 12s linear infinite;will-change:transform
+    }
+    .cube-face{
+      position:absolute;inset:0;display:grid;place-items:center;border:1px solid rgba(255,255,255,.2);
+      background:linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.05));
+      box-shadow:0 18px 42px rgba(2,6,23,.28);backdrop-filter:blur(8px);border-radius:18px
+    }
+    .cube-face::before{
+      content:"";width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#d4af37,#f8e08a);
+      box-shadow:0 0 28px rgba(212,175,55,.36)
+    }
+    .cube-face.front{transform:translateZ(66px)}
+    .cube-face.back{transform:rotateY(180deg) translateZ(66px)}
+    .cube-face.right{transform:rotateY(90deg) translateZ(66px)}
+    .cube-face.left{transform:rotateY(-90deg) translateZ(66px)}
+    .cube-face.top{transform:rotateX(90deg) translateZ(66px)}
+    .cube-face.bottom{transform:rotateX(-90deg) translateZ(66px)}
+    .float-card{
+      position:absolute;width:150px;padding:14px;border-radius:18px;
+      background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 18px 40px rgba(2,6,23,.24);backdrop-filter:blur(10px);
+      transform-style:preserve-3d;animation:cardFloat 5.4s ease-in-out infinite;will-change:transform
+    }
+    .float-card::before{content:"";display:block;width:34px;height:34px;border-radius:12px;background:rgba(212,175,55,.9);margin-bottom:10px}
+    .float-card::after{content:"";display:block;width:78%;height:8px;border-radius:99px;background:rgba(255,255,255,.38);box-shadow:0 16px 0 rgba(255,255,255,.2)}
+    .float-card.c1{left:4%;top:22%;transform:translateZ(80px) rotateY(-18deg)}
+    .float-card.c2{right:3%;top:30%;animation-delay:-1.2s;transform:translateZ(110px) rotateY(18deg)}
+    .float-card.c3{left:28%;bottom:6%;animation-delay:-2.1s;transform:translateZ(70px) rotateX(12deg)}
+    .data-node{
+      position:absolute;width:13px;height:13px;border-radius:50%;background:#f8d34c;
+      box-shadow:0 0 22px rgba(212,175,55,.76);animation:nodePulse 2.8s ease-in-out infinite
+    }
+    .data-node.n1{left:19%;top:16%}
+    .data-node.n2{right:17%;top:18%;animation-delay:-.7s}
+    .data-node.n3{right:18%;bottom:23%;animation-delay:-1.4s}
+    .data-node.n4{left:16%;bottom:26%;animation-delay:-2s}
+    @keyframes cubeTurn{
+      from{transform:translate(-50%,-50%) rotateX(-18deg) rotateY(0deg)}
+      to{transform:translate(-50%,-50%) rotateX(-18deg) rotateY(360deg)}
+    }
+    @keyframes stageFloat{
+      0%,100%{transform:translateY(0) rotateX(0deg)}
+      50%{transform:translateY(-12px) rotateX(4deg)}
+    }
+    @keyframes cardFloat{
+      0%,100%{translate:0 0}
+      50%{translate:0 -12px}
+    }
+    @keyframes ringSpin{
+      to{rotate:360deg}
+    }
+    @keyframes nodePulse{
+      0%,100%{scale:.85;opacity:.55}
+      50%{scale:1.2;opacity:1}
+    }
+    @keyframes visualGlow{
+      0%,100%{opacity:.62;scale:.96}
+      50%{opacity:.92;scale:1.03}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .orbital-stage,.orbit-ring,.core-cube,.float-card,.data-node,.hero-visual::before{animation:none}
+    }
     section{padding:56px 0}
     h3{font-size:clamp(28px,3vw,34px);margin:0 0 10px}
     h4{margin:0}
@@ -321,6 +412,21 @@
       .menu-btn{padding:8px 10px;border-radius:8px;font-size:12px}
       .hero{padding:22px 0 20px}
       .hero .wrap{gap:10px}
+      .hero-visual{min-height:220px;margin-top:4px}
+      .orbital-stage{width:min(250px,88vw)}
+      .core-cube{width:78px;height:78px}
+      .cube-face{border-radius:12px}
+      .cube-face::before{width:28px;height:28px;border-radius:9px}
+      .cube-face.front{transform:translateZ(39px)}
+      .cube-face.back{transform:rotateY(180deg) translateZ(39px)}
+      .cube-face.right{transform:rotateY(90deg) translateZ(39px)}
+      .cube-face.left{transform:rotateY(-90deg) translateZ(39px)}
+      .cube-face.top{transform:rotateX(90deg) translateZ(39px)}
+      .cube-face.bottom{transform:rotateX(-90deg) translateZ(39px)}
+      .float-card{width:86px;padding:8px;border-radius:12px}
+      .float-card::before{width:20px;height:20px;border-radius:7px;margin-bottom:7px}
+      .float-card::after{height:5px;box-shadow:0 10px 0 rgba(255,255,255,.2)}
+      .data-node{width:9px;height:9px}
       .hero-kicker{margin-bottom:10px;padding:5px 8px;font-size:9px;gap:7px}
       .hero-kicker span{width:5px;height:5px}
       .hero-copy h2{font-size:23px;line-height:1.1;margin-bottom:10px}
@@ -429,28 +535,28 @@
           <a class="btn btn-secondary" href="#quotation">View Products</a>
         </div>
       </div>
-      <aside class="hero-panel">
-        <h3>What we deliver</h3>
-        <p>Clean design, business-first development, reliable support, and practical digital products.</p>
-        <div class="hero-grid">
-          <div class="hero-card">
-            <strong>Business Websites</strong>
-            <span>Brand-focused websites with strong mobile layouts.</span>
-          </div>
-          <div class="hero-card">
-            <strong>Web Applications</strong>
-            <span>Dashboards, internal systems, portals, and tools.</span>
-          </div>
-          <div class="hero-card">
-            <strong>SaaS Products</strong>
-            <span>Scalable product builds with auth, roles, and analytics.</span>
-          </div>
-          <div class="hero-card">
-            <strong>Support</strong>
-            <span>Launch help, maintenance, and long-term improvements.</span>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbital-stage">
+          <span class="orbit-ring"></span>
+          <span class="orbit-ring r2"></span>
+          <span class="orbit-ring r3"></span>
+          <span class="data-node n1"></span>
+          <span class="data-node n2"></span>
+          <span class="data-node n3"></span>
+          <span class="data-node n4"></span>
+          <div class="float-card c1"></div>
+          <div class="float-card c2"></div>
+          <div class="float-card c3"></div>
+          <div class="core-cube">
+            <span class="cube-face front"></span>
+            <span class="cube-face back"></span>
+            <span class="cube-face right"></span>
+            <span class="cube-face left"></span>
+            <span class="cube-face top"></span>
+            <span class="cube-face bottom"></span>
           </div>
         </div>
-      </aside>
+      </div>
     </div>
   </section>
 
